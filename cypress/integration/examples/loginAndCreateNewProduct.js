@@ -21,6 +21,9 @@ describe("Create a Product, add a Case and upload pictures ", function() {
             cy.get("#password").type(loginDetails.password);
         })
 
+        //generate random number to add to case title
+        let numberGen = Math.round(Math.random() * 5000)
+
         cy.get("#new_user > .govuk-button").click();
         //cy.wait(2000);
         cy.get("#navigation").contains("Products").click();
@@ -48,7 +51,7 @@ describe("Create a Product, add a Case and upload pictures ", function() {
 
         //manufacturers brand name
         cy.get("#product_brand").type(this.data.brandName)
-        cy.get("#name").type(this.data.productName)
+        cy.get("#name").type(this.data.productName + numberGen)
 
         //yes, product placed before 01-01-2021
         cy.get("#when_placed_on_market").check()
@@ -93,9 +96,6 @@ describe("Create a Product, add a Case and upload pictures ", function() {
         //no reference number
         cy.get("#investigation_has_complainant_reference_false").check()
         cy.get("input[type='submit']").click()
-
-        //generate random number to add to case title
-        let numberGen = Math.round(Math.random() * 5000)
 
         //Enter case name
         cy.get("#user_title").type("Chemical Burn Report--" + numberGen)
