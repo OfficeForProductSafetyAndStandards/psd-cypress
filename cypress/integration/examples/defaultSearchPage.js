@@ -27,6 +27,25 @@ describe("Login and navigate to the All Products Search page", function() {
         cy.contains("Reject analytics cookies").click()
 
         cy.contains("All products - Search").click()
-        
+
+        //search by relevance of products available
+        cy.get("input[aria-describedby='search-hint']").type("Face Conditioner")
+        cy.get("button[data-module='govuk-button']").click()
+
+        //confirm that search results are brought back on default settings
+        let productNumber = cy.get("p[class='govuk-body']").contains("products matching keyword")
+        cy.wait(3000)
+
+        //run sorting tests
+        cy.get("select[id=sort_by]").eq(0).select("Name A–Z")
+        cy.wait(3000)
+
+        //click on retired radio button
+        cy.get("#retired").check()
+        cy.get("button[type='submit']").click()
+
+        //confirm that therer are no retired products
+        cy.get("div[aria-label='Products']").should("not.exist")
+
     })
 })
