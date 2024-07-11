@@ -38,7 +38,7 @@ module.exports = defineConfig({
   env: {    
     URL: "https://staging.product-safety-database.service.gov.uk",
     APIURL:"https://staging.product-safety-database.service.gov.uk/api/v1",
-    TAGS: "@APITest" 
+    TAGS: "@SmokeTest" 
   },
 
   retries: {
