@@ -29,6 +29,14 @@ class PSDCommonPage
         this.elements.pageBody().invoke('text').should('match', regex);
     }
 
+    /**
+     * Method to click on the givem link in Create a product safety notification page
+     * @param {*} linkText 
+     */
+    followLink(linkText) {
+        cy.contains(linkText).click();
+    }
+
 
 
 }

@@ -1,5 +1,5 @@
 Feature: Create PSD product record
-    As a loggedin user of the PSD service
+    As a logged in user of the PSD service
     I want to be able to create a product record
     So that I have the product record created that can be used for a notification
 

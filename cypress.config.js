@@ -1,4 +1,4 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require("Cypress");
 const cypressSplit = require('cypress-split')
 const cucumber = require('cypress-cucumber-preprocessor').default
 
