@@ -1,9 +1,7 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import LoginPage from "../page_objects/psdLoginPage";
 import LoginHelper from "../helper_classes/psdLoginHelper";
-
-
 
 /********************** Step definitions **********************/
 

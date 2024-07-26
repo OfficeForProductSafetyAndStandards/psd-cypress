@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import PSDCreateProductHelper from "../helper_classes/psdCreateProductHelper";
 import PSDViewProductRecordPage from "../page_objects/psdViewProductRecordPage";
