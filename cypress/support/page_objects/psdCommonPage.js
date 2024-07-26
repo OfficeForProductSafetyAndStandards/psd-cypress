@@ -34,7 +34,7 @@ class PSDCommonPage
      * @param {*} linkText 
      */
     followLink(linkText) {
-        cy.contains(linkText).click();
+        cy.contains('a', linkText, { timeout: 10000 }).should('be.visible').click();
     }
 
 

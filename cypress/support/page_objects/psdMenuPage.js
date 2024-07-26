@@ -12,7 +12,6 @@ class PSDMenuPage
         yourTeamLink: () => cy.xpath("//a[contains(text(), 'Your team')]", { timeout: 10000 }).should('be.visible'),
         yourAccountLink: () => cy.xpath("//a[contains(text(), 'Your account')]", { timeout: 10000 }).should('be.visible'),
         signOutLink: () => cy.xpath("//a[contains(text(), 'Sign out')]", { timeout: 10000 }).should('be.visible')
-
     }
 
     /******************** methods *******************/

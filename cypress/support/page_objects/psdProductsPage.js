@@ -1,19 +1,16 @@
 require('@cypress/xpath');
 
-class PSDProductsPage
-{
-    
+class PSDProductsPage {
+
     /****************** page objects *****************/
 
     elements = {
-        createProductRecordButton : () => cy.xpath("//a[@href='/products/duplicate-check']", { timeout: 10000 }).should('exist'),
-        searchTextField: () => cy.xpath("//input[@id='q-field']", {timeout: 1000}).should('exist'),
-        searchButton: () => cy.xpath("//span[contains(text(), 'Search')]", {timeout: 1000}).should('exist'),
-        addAnotherProductYesRadioButton: () => cy.xpath("//label[contains(text(), 'Yes')]/preceding-sibling::input", {timeout: 1000}).should('exist'),
-        addAnotherProductNoRadioButton: () => cy.xpath("//label[contains(text(), 'No')]/preceding-sibling::input", {timeout: 1000}).should('exist'),
-        continueButton: () => cy.xpath("//button[contains(text(), 'Continue')]", {timeout: 1000}).should('exist')
-
-
+        createProductRecordButton: () => cy.xpath("//a[@href='/products/duplicate-check']", { timeout: 10000 }).should('exist'),
+        searchTextField: () => cy.xpath("//input[@id='q-field']", { timeout: 10000 }).should('exist'),
+        searchButton: () => cy.contains('span', 'Search', { timeout: 10000 }).should('exist').parent(),
+        addAnotherProductYesRadioButton: () => cy.xpath("//label[contains(text(), 'Yes')]/preceding-sibling::input", { timeout: 10000 }).should('exist'),
+        addAnotherProductNoRadioButton: () => cy.xpath("//label[contains(text(), 'No')]/preceding-sibling::input", { timeout: 10000 }).should('exist'),
+        continueButton: () => cy.xpath("//button[contains(text(), 'Continue')]", { timeout: 10000 }).should('exist')
     }
 
     /************** Properties **************/
@@ -42,7 +39,7 @@ class PSDProductsPage
         } else {
             this.elements.searchTextField().type(productName);
         }
-        this.elements.searchButton().click();        
+        this.elements.searchButton().click();
     }
 
     /**
@@ -50,28 +47,51 @@ class PSDProductsPage
      * Pass dataTable to search and add multiple products
      * @param {*} productName 
      */
-    searchAndSelectProduct(productName) {
-        if (Array.isArray(productName) && productName.every(row => Array.isArray(row))) {
-            const rows = dataTable.hashes();
-            const numberOfRows = rows.length;
+    searchAndSelectProduct(dataTable) {
 
-            rows.forEach((row, index) => {
-                this.searchForAProduct(row.ProductName);
-                let xpath = this.selectProductButtonXpath.replace("elementText", productName);
-                cy.xpath(xpath, {timeout: 1000}).should('exist').click();
+        const rows = dataTable.hashes();
+        const numberOfRows = rows.length;
 
-                if (index !== numberOfRows - 1) {
-                    this.clickYesAddAnotherProductAndContinue();
-                } else {
-                    this.clickNoToAddAnotherProductAndContinue();
-                }
-            })
-        } else {
-            searchForAProduct(productName);
-            let xpath = this.selectProductButtonXpath.replace("elementText", productName);
-            cy.xpath(xpath, {timeout: 1000}).should('exist').click();
-            this.clickNoToAddAnotherProductAndContinue();
-        }        
+        rows.forEach((row, index) => {
+            this.searchForAProduct(row.ProductName);
+            // let xpath = this.selectProductButtonXpath.replace("elementText", row.productName);
+            // cy.xpath(xpath, { timeout: 10000 }).should('exist').click();
+
+            // if (row.ProductName.toLowerCase() === 'random') {
+                
+
+            // }
+
+            cy.contains('button', 'Select', { timeout: 10000 }).should('exist').click();
+
+            if (index === numberOfRows - 1) {
+                this.clickNoToAddAnotherProductAndContinue();                
+            } else {
+                this.clickYesAddAnotherProductAndContinue();
+            }
+        })
+
+        // if (Array.isArray(productName) && productName.every(row => Array.isArray(row))) {
+        //     const rows = dataTable.hashes();
+        //     const numberOfRows = rows.length;
+
+        //     rows.forEach((row, index) => {
+        //         this.searchForAProduct(row.ProductName);
+        //         let xpath = this.selectProductButtonXpath.replace("elementText", productName);
+        //         cy.xpath(xpath, {timeout: 1000}).should('exist').click();
+
+        //         if (index !== numberOfRows - 1) {
+        //             this.clickYesAddAnotherProductAndContinue();
+        //         } else {
+        //             this.clickNoToAddAnotherProductAndContinue();
+        //         }
+        //     })
+        // } else {
+        //     searchForAProduct(productName);
+        //     let xpath = this.selectProductButtonXpath.replace("elementText", productName);
+        //     cy.xpath(xpath, {timeout: 1000}).should('exist').click();
+        //     this.clickNoToAddAnotherProductAndContinue();
+        // }        
     }
 
     /**

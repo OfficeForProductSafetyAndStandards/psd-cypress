@@ -17,7 +17,10 @@ Feature: Create PSD new business
             | <ProductName> |
         And the user add the following notification and product safety details:
             | NotificationTitle | NotificationSummary            | NotificationReason | ProductPrimaryHarm | ProductHarmInfo | ProductIncompleteMarkingsDescription | OverseasRegulatorCountry | ReferenceNumber |
-            | Random            | Auto Test notification summary | Product is unsafe  | random             | Harm to health  | Product non-compliant                | Random                   | No              |
+            | Random            | Auto Test notification summary | Product is unsafe  | Random             | Harm to health  | Product non-compliant                | Random                   | No              |
+        And the user add a new business with the following data:
+            | TradingName | LegalName | CompanyNumber | AddressLine1 | Postcode | Country | BusinessRole |
+            | Random      | Random    | Random        | Line1        | AA1 1AA  | Random  | Retailer     |
 
         Examples:
             | DoesProductHasBarcode | IsProductCounterfeit | ProductMarking | ProductName | MarketBeforeJan2021 | ExpBarcode | ExpMarketDate              | ExpCounterfeit                                      | ExpProductMarking |

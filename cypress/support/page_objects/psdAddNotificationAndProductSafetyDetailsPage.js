@@ -1,6 +1,6 @@
-import { should } from 'chai';
-
 require('@cypress/xpath');
+
+import PSDRandomTestDataHelper from "../helper_classes/psdRandomTestDataHelper";
 
 class PSDAddNotificationAndProductSafetyDetailsPage
 {
@@ -108,7 +108,7 @@ class PSDAddNotificationAndProductSafetyDetailsPage
                 cy.wrap($dropdown).find('option').then(options => {
                     if (options.length > 0) {
                         const randomIndex = Math.floor(Math.random() * options.length);
-                        cy.wrap($dropdown).select(options[randomIndex].value);
+                        cy.wrap($dropdown).select(options[randomIndex].text);
                         cy.wrap(options[randomIndex].text).as('productPrimaryHarm');
                         cy.log('Product Primary Harm = ' + options[randomIndex].text);
                     } else {
@@ -193,7 +193,6 @@ class PSDAddNotificationAndProductSafetyDetailsPage
                 this.clickProductIsUnsafeAndNoncompliant();
             }
         })
-
         this.clickSaveAndContinue();
     }
 
@@ -203,43 +202,23 @@ class PSDAddNotificationAndProductSafetyDetailsPage
      */
     addProductSafetyAndComplianceDetails(dataTable) {
 
-        dataTable.hashes().then((rows) => {
-            const headers = Object.keys(rows[0]);
+        const data = dataTable.hashes();
+        const headers = dataTable.raw()[0];
 
-            rows.forEach(row => {
-                // Add Product harm information is given
-                if (headers.includes('ProductPrimaryHarm')) {
-                    this.addProductHarm(row.ProductPrimaryHarm, row.ProductHarmInfo);
-                } 
-                
-                // Add Product incomplete markings, labeling or other issues if given
-                if (headers.includes('ProductIncompleteMarkingsDescription')) {                    
-                    this.addProductIncompleteMarking(row.ProductIncompleteMarkingsDescription);
-                } 
-
+        data.forEach(row => {
+            if (headers.includes('ProductPrimaryHarm') && row.ProductPrimaryHarm) {
+                this.addProductHarm(row.ProductPrimaryHarm, row.ProductHarmInfo);
+            } 
+            if (headers.includes('ProductIncompleteMarkingsDescription') && row.ProductIncompleteMarkingsDescription) {
+                this.addProductIncompleteMarking(row.ProductIncompleteMarkingsDescription);
+            }
+            if (headers.includes('OverseasRegulatorCountry') && row.OverseasRegulatorCountry) {
                 this.selectReportedOverseasRegulator(row.OverseasRegulatorCountry);
+            }
+            if (headers.includes('ReferenceNumber') && row.ReferenceNumber) {
                 this.addReferenceNumber(row.ReferenceNumber);
-            })
-
-            // // Add Product harm information is given
-            // if (headers.includes('ProductPrimaryHarm')) {
-            //     rows.forEach(row => {
-            //         this.addProductHarm(row.ProductPrimaryHarm, row.ProductHarmInfo);
-            //     })
-            // }
-
-            // // Add Product incomplete markings, labeling or other issues if given
-            // if (headers.includes('ProductIncompleteMarkingsDescription')) {
-            //     rows.forEach(row => {
-            //         this.addProductIncompleteMarking(row.ProductIncompleteMarkingsDescription);
-            //     })
-            // }
-
-            // rows.forEach(row => {
-            //     this.selectReportedOverseasRegulator(row.OverseasRegulatorCountry);
-            //     this.addReferenceNumber(row.ReferenceNumber);
-            // })
-        })
+            }
+        })        
         this.clickSaveAndContinue();       
     }
 
@@ -248,24 +227,23 @@ class PSDAddNotificationAndProductSafetyDetailsPage
      * @param {*} dataTable 
      */
     addNumberOfAffectedProducts(dataTable) {
-        dataTable.hashes().then((rows) => {
-            const headers = Object.keys(rows[0]);
+        const data = dataTable.hashes();
+        const headers = dataTable.raw()[0];
 
-            rows.forEach(row => {
-                if (headers.includes('ExactNumber')) {
-                    this.elements.exactNumberRadioButton().click();
-                    this.elements.exactAffectedNumberField().clear();
-                    this.elements.exactAffectedNumberField().type(row.ExactNumber);
-                } else if (headers.includes('ApproximateNumber')) {
-                    this.elements.approximateNumberRadioButton().click();
-                    this.elements.approximateAffectedNumberField().clear();
-                    this.elements.approximateAffectedNumberField().type(row.ApproximateNumber);
-                } else if (headers.includes('Unknown')) {
-                    this.elements.unknownRadioButton().click();
-                } else {
-                    this.elements.notrelevantRadioButton().click();
-                }
-            })
+        data.forEach(row => {
+            if (headers.includes('ExactNumber') && row.ExactNumber) {
+                this.elements.exactNumberRadioButton().click();
+                this.elements.exactAffectedNumberField().clear();
+                this.elements.exactAffectedNumberField().type(row.ExactNumber);
+            } else if (headers.includes('ApproximateNumber') && row.ApproximateNumber) {
+                this.elements.approximateNumberRadioButton().click();
+                this.elements.approximateAffectedNumberField().clear();
+                this.elements.approximateAffectedNumberField().type(row.ApproximateNumber);
+            } else if (headers.includes('Unknown') && row.Unknown) {
+                this.elements.unknownRadioButton().click();
+            } else {
+                this.elements.notrelevantRadioButton().click();
+            }
         })
         this.elements.saveAndCompleteTasksInThisSectionButton().click();
     }

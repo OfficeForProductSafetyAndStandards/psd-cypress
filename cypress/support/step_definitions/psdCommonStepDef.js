@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import CommonHelper from "../helper_classes/psdCommonHelper";
 import CommonPage from "../page_objects/psdCommonPage";

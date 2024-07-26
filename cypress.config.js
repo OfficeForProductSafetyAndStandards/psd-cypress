@@ -1,4 +1,4 @@
-const { defineConfig } = require("Cypress");
+const { defineConfig } = require("cypress");
 const cypressSplit = require('cypress-split')
 const cucumber = require('cypress-cucumber-preprocessor').default
 
@@ -41,10 +41,10 @@ module.exports = defineConfig({
     TAGS: "@SmokeTest" 
   },
 
-  retries: {
-    runMode: 1,
-    openMode: 1
-  },
+  // retries: {
+  //   runMode: 1,
+  //   openMode: 1
+  // },
 
   e2e: {
   // baseUrl: "https://postman-echo.com/",

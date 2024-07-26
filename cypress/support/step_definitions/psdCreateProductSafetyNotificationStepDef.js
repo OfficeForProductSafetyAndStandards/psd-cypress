@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import PSDMenuPage from "../page_objects/psdMenuPage";
 import PSDCommonPage from "../page_objects/psdCommonPage";
@@ -17,7 +17,7 @@ Given("the user start to create a new product safety notification", function () 
 })
 
 Given("the user search and add {string} product to the notification", function (productName) {
-    const psdCommonPage = new PSDCommonPage();
+    const psdCommonPage = new PSDCommonPage();    
     psdCommonPage.followLink("Search for or add a product");
 
     const psdProductsPage = new PSDProductsPage();
@@ -33,6 +33,7 @@ Given("the user search and add the following products to the notification:", fun
 })
 
 Given("the user add the following notification and product safety details:", function (dataTable) {
+    cy.wait(10000);
     const psdCommonPage = new PSDCommonPage();
     psdCommonPage.followLink("Add notification details");
 
