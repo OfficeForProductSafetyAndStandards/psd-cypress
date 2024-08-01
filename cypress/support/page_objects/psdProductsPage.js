@@ -54,13 +54,6 @@ class PSDProductsPage {
 
         rows.forEach((row, index) => {
             this.searchForAProduct(row.ProductName);
-            // let xpath = this.selectProductButtonXpath.replace("elementText", row.productName);
-            // cy.xpath(xpath, { timeout: 10000 }).should('exist').click();
-
-            // if (row.ProductName.toLowerCase() === 'random') {
-                
-
-            // }
 
             cy.contains('button', 'Select', { timeout: 10000 }).should('exist').click();
 
@@ -69,29 +62,7 @@ class PSDProductsPage {
             } else {
                 this.clickYesAddAnotherProductAndContinue();
             }
-        })
-
-        // if (Array.isArray(productName) && productName.every(row => Array.isArray(row))) {
-        //     const rows = dataTable.hashes();
-        //     const numberOfRows = rows.length;
-
-        //     rows.forEach((row, index) => {
-        //         this.searchForAProduct(row.ProductName);
-        //         let xpath = this.selectProductButtonXpath.replace("elementText", productName);
-        //         cy.xpath(xpath, {timeout: 1000}).should('exist').click();
-
-        //         if (index !== numberOfRows - 1) {
-        //             this.clickYesAddAnotherProductAndContinue();
-        //         } else {
-        //             this.clickNoToAddAnotherProductAndContinue();
-        //         }
-        //     })
-        // } else {
-        //     searchForAProduct(productName);
-        //     let xpath = this.selectProductButtonXpath.replace("elementText", productName);
-        //     cy.xpath(xpath, {timeout: 1000}).should('exist').click();
-        //     this.clickNoToAddAnotherProductAndContinue();
-        // }        
+        })                
     }
 
     /**

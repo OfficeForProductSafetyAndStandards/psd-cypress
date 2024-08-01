@@ -148,7 +148,7 @@ class PSDBusinessPage {
      * @param {*} name 
      */
     clickOnlineMarketplaceName(name) {
-        cy.contains('label', role, { timeout: 10000 })
+        cy.contains('label', name, { timeout: 10000 })
                 .invoke('attr', 'for')
                 .then((id) => {
                     cy.get(`#${id}`).should('exist').click();
