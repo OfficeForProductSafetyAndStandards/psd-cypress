@@ -51,7 +51,7 @@ module.exports = defineConfig({
    //run multiple folders in e2e
    // specPattern: ['cypress/e2e/uitests/*.feature','cypress/e2e/accessibilityTests/*.feature','cypress/e2e/integrationTests/*.feature'],
     specPattern: "**/*.feature",
-    retries: 1,
+    // retries: 1,
 
     setupNodeEvents    
   },
