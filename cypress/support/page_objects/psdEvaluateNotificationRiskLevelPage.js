@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import PSDCommonPage from "./psdCommonPage";
+import PSDBasePage from "../page_objects/psdBasePage";
 
 class PSDEvaluateNotificationRiskLevelPage {
 
@@ -24,11 +24,7 @@ class PSDEvaluateNotificationRiskLevelPage {
      * @param {*} level 
      */
     setNotificationRiskLevel(level) {
-        cy.contains('label', level, { timeout: 10000 })
-                .invoke('attr', 'for')
-                .then((id) => {
-                    cy.get(`#${id}`).should('exist').click();
-                })
+        PSDBasePage.clickRadioButtonForTheLabelText(level);
     }
 
     /********** Public Methods *********/
@@ -38,9 +34,8 @@ class PSDEvaluateNotificationRiskLevelPage {
      * @param {*} dataTable 
      */
     addNotificationRiskLevel(dataTable) {
-        const psdCommonPage = new PSDCommonPage();
         cy.wait(3000);
-        psdCommonPage.followLink("Evaluate notification risk level");
+        PSDBasePage.followLink("Evaluate notification risk level");
 
         dataTable.hashes().forEach((row) => {
             this.setNotificationRiskLevel(row.EvaluateRiskLevel);

@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import PSDCommonPage from "./psdCommonPage";
+import PSDBasePage from "../page_objects/psdBasePage";
 
 class PSDAddProductIdentificationDetailsPage {
 
@@ -97,8 +97,7 @@ class PSDAddProductIdentificationDetailsPage {
      * @param {*} dataTable 
      */
     addProductIdentificationDetails(dataTable) {
-        const psdCommonPage = new PSDCommonPage();
-        psdCommonPage.followLink("Add product identification details"); 
+        PSDBasePage.followLink("Add product identification details"); 
 
         const data = dataTable.hashes();
         const headers = dataTable.raw()[0];

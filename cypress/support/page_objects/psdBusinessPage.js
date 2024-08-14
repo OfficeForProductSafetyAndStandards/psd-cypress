@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import PSDRandomTestDataHelper from "../helper_classes/psdRandomTestDataHelper";
+import PSDBasePage from "../page_objects/psdBasePage";
 
 class PSDBusinessPage {
 
@@ -136,11 +137,7 @@ class PSDBusinessPage {
      * @param {*} role 
      */
     checkBusinessRoleCheckbox(role) {
-        cy.contains('label', role, { timeout: 10000 })
-                .invoke('attr', 'for')
-                .then((id) => {
-                    cy.get(`#${id}`).should('exist').check();
-                })
+        PSDBasePage.clickRadioButtonForTheLabelText(role);
     }
 
     /**
@@ -148,11 +145,7 @@ class PSDBusinessPage {
      * @param {*} name 
      */
     clickOnlineMarketplaceName(name) {
-        cy.contains('label', name, { timeout: 10000 })
-                .invoke('attr', 'for')
-                .then((id) => {
-                    cy.get(`#${id}`).should('exist').click();
-                })
+        PSDBasePage.clickRadioButtonForTheLabelText(name);
     }
 
     /**

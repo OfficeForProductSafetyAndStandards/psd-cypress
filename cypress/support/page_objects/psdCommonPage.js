@@ -1,12 +1,11 @@
 require('@cypress/xpath');
 
-class PSDCommonPage
-{
+class PSDCommonPage {
 
     /****************** page objects *****************/
 
     elements = {
-        pageBody : () => cy.xpath("//body", { timeout: 10000 }).should('exist')
+        pageBody: () => cy.xpath("//body", { timeout: 10000 }).should('exist')
 
     }
 
@@ -28,16 +27,6 @@ class PSDCommonPage
         const regex = new RegExp(regexPattern);
         this.elements.pageBody().invoke('text').should('match', regex);
     }
-
-    /**
-     * Method to click on the givem link in Create a product safety notification page
-     * @param {*} linkText 
-     */
-    followLink(linkText) {
-        cy.contains('a', linkText, { timeout: 10000 }).should('be.visible').click();
-    }
-
-
 
 }
 

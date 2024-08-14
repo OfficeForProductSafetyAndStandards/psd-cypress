@@ -1,5 +1,5 @@
-import PSDCommonPage from "../page_objects/psdCommonPage";
 import PSDBusinessPage from "../page_objects/psdBusinessPage";
+import PSDBasePage from "../page_objects/psdBasePage";
 
 class PSDAddBusinessHelper {
 
@@ -8,8 +8,7 @@ class PSDAddBusinessHelper {
      * @param {*} dataTable 
      */
     addNewBusiness(dataTable) {
-        const psdCommonPage = new PSDCommonPage();
-        psdCommonPage.followLink("Search for or add a business");
+        PSDBasePage.followLink("Search for or add a business");
     
         const psdBusinessPage = new PSDBusinessPage();
         psdBusinessPage.clickAddNewBusinessButton();
