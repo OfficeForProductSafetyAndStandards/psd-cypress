@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import PSDCommonPage from "./psdCommonPage";
+import PSDBasePage from "../page_objects/psdBasePage";
 
 class PSDAddSupportingImagesPage {
 
@@ -37,9 +37,8 @@ class PSDAddSupportingImagesPage {
      * @param {*} dataTable 
      */
     addSupportingImages(dataTable) {
-        const psdCommonPage = new PSDCommonPage();
         cy.wait(3000);
-        psdCommonPage.followLink("Add supporting images"); 
+        PSDBasePage.followLink("Add supporting images"); 
 
         const data = dataTable.hashes();
         const headers = dataTable.raw()[0];

@@ -20,7 +20,7 @@ class PSDAddNotificationAndProductSafetyDetailsPage
         productIncompleteMarkingsCheckbox: () => cy.xpath("//input[@id='change-notification-product-safety-compliance-details-form-noncompliant-true-field']", { timeout:1000 }).should('exist'),
         productDescribeNoncomplianceIssuesField: () => cy.xpath("//textarea[@id='change-notification-product-safety-compliance-details-form-noncompliance-description-field']", { timeout:1000 }).should('exist'),
         safetyIssueReportedbyOverseasRegulatorYesRadioButton: () => cy.xpath("//input[@id='change-notification-product-safety-compliance-details-form-is-from-overseas-regulator-true-field']", { timeout:1000 }).should('exist'),
-        safetyIssueReportedbyOverseasRegulatorCountryDropdown: () => cy.xpath("//select[@id='change-notification-product-safety-compliance-details-form-overseas-regulator-country-field']", { timeout:1000 }).should('exist'),
+        safetyIssueReportedbyOverseasRegulatorCountryDropdown: () => cy.get("select#change-notification-product-safety-compliance-details-form-notifying-country-field", { timeout:1000 }).should('exist'),
         safetyIssueReportedbyOverseasRegulatorNoRadioButton: () => cy.xpath("//input[@id='change-notification-product-safety-compliance-details-form-is-from-overseas-regulator-field']", { timeout:1000 }).should('exist'),
         referenceNumberYesRadioButton: () => cy.xpath("//input[@id='change-notification-product-safety-compliance-details-form-add-reference-number-true-field']", { timeout:1000 }).should('exist'),
         referenceNumberField: () => cy.xpath("//input[@id='change-notification-product-safety-compliance-details-form-reference-number-field']", { timeout:1000 }).should('exist'),

@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import PSDBasePage from "../page_objects/psdBasePage";
+
 class PSDAddRiskAssessmentPage {
 
     /****************** page objects *****************/
@@ -49,11 +51,7 @@ class PSDAddRiskAssessmentPage {
      * @param {*} level 
      */
     setRiskLevel(level) {
-        cy.contains('label', level, { timeout: 10000 })
-                .invoke('attr', 'for')
-                .then((id) => {
-                    cy.get(`#${id}`).should('exist').click();
-                })
+        PSDBasePage.clickRadioButtonForTheLabelText(level);
     }
 
     /**
@@ -61,11 +59,7 @@ class PSDAddRiskAssessmentPage {
      * @param {*} assessedBy 
      */
     setWhoCompletedTheAssessment(assessedBy) {
-        cy.contains('label', assessedBy, { timeout: 10000 })
-                .invoke('attr', 'for')
-                .then((id) => {
-                    cy.get(`#${id}`).should('exist').click();
-                })
+        PSDBasePage.clickRadioButtonForTheLabelText(assessedBy);
     }
 
     /**
@@ -79,7 +73,7 @@ class PSDAddRiskAssessmentPage {
                     if (options.length > 0) {
                         const randomIndex = Math.floor(Math.random() * options.length);
                         cy.wrap($dropdown).select(options[randomIndex].value);
-                        cy.wrap(options[randomIndex].text).as('RiskAssessedByTeam');
+                        cy.wrap(options[randomIndex].text).as('riskAssessedByTeam');
                         cy.log('RiskAssessedByTeam = ' + options[randomIndex].text);
                     } else {
                         throw new Error('No options available in the risk assessed by dropdown');

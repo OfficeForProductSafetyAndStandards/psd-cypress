@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 
 import PSDMenuPage from "../page_objects/psdMenuPage";
-import PSDCommonPage from "../page_objects/psdCommonPage";
 import PSDNotificationsPage from "../page_objects/psdNotificationsPage";
 import PSDProductsPage from "../page_objects/psdProductsPage";
 import PSDAddNotificationAndProductSafetyDetailsPage from "../page_objects/psdAddNotificationAndProductSafetyDetailsPage";
@@ -10,6 +9,7 @@ import PSDCreateNotificationHelper from "../helper_classes/psdCreateNotification
 import PSDAddSupportingImagesPage from "../page_objects/psdAddSupportingImagesPage";
 import PSDAddSupportingDocumentsPage from "../page_objects/psdAddSupportingDocumentsPage";
 import PSDEvaluateNotificationRiskLevelPage from "../page_objects/psdEvaluateNotificationRiskLevelPage";
+import PSDBasePage from "../page_objects/psdBasePage";
 
 
 /********************** Step definitions **********************/
@@ -23,24 +23,21 @@ Given("the user start to create a new product safety notification", function () 
 })
 
 Given("the user search and add {string} product to the notification", function (productName) {
-    const psdCommonPage = new PSDCommonPage();    
-    psdCommonPage.followLink("Search for or add a product");
+    PSDBasePage.followLink("Search for or add a product");
 
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.searchAndSelectProduct(productName);
 })
 
 Given("the user search and add the following products to the notification:", function (dataTable) {
-    const psdCommonPage = new PSDCommonPage();
-    psdCommonPage.followLink("Search for or add a product");
+    PSDBasePage.followLink("Search for or add a product");
 
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.searchAndSelectProduct(dataTable);
 })
 
 Given("the user add the following notification and product safety details:", function (dataTable) {
-    const psdCommonPage = new PSDCommonPage();
-    psdCommonPage.followLink("Add notification details");
+    PSDBasePage.followLink("Add notification details");
 
     const psdNotificationAndProductSafetyPage = new PSDAddNotificationAndProductSafetyDetailsPage();
     psdNotificationAndProductSafetyPage.addNotificationDetails(dataTable);
@@ -65,4 +62,9 @@ Given("the user add the following product identification and evidence details:",
 
     const psdEvaluateNotificationRiskLevelPage = new PSDEvaluateNotificationRiskLevelPage();
     psdEvaluateNotificationRiskLevelPage.addNotificationRiskLevel(dataTable);
+})
+
+Given("the user add a corrective action with the following details:", function (dataTable) {
+    const psdCreateNotificationHelper = new PSDCreateNotificationHelper();
+    psdCreateNotificationHelper.addACorrectiveActionToANotification(dataTable);
 })

@@ -1,6 +1,7 @@
 import PSDAddTestReportPage from "../page_objects/psdAddTestReportPage";
-import PSDCommonPage from "../page_objects/psdCommonPage";
 import PSDAddRiskAssessmentPage from "../page_objects/psdAddRiskAssessmentPage";
+import PSDRecordCorrectiveActionPage from "../page_objects/psdRecordACorrectiveActionPage";
+import PSDBasePage from "../page_objects/psdBasePage";
 
 class PSDCreateNotificationHelper {
 
@@ -11,8 +12,7 @@ class PSDCreateNotificationHelper {
      * @param {*} dataTable 
      */
     addTestReportToANotification(dataTable) {
-        const psdCommonPage = new PSDCommonPage();
-        psdCommonPage.followLink("Add test reports");
+        PSDBasePage.followLink("Add test reports");
 
         const psdAddTestReportPage = new PSDAddTestReportPage();
         const data = dataTable.hashes();
@@ -36,9 +36,8 @@ class PSDCreateNotificationHelper {
      * @param {*} dataTable 
      */
     addRiskAssessmentToANotification(dataTable) {
-        const psdCommonPage = new PSDCommonPage();
         cy.wait(3000);
-        psdCommonPage.followLink("Add risk assessments");
+        PSDBasePage.followLink("Add risk assessments");
 
         const psdAddRiskAssessmentPage = new PSDAddRiskAssessmentPage();
         const data = dataTable.hashes();
@@ -51,6 +50,29 @@ class PSDCreateNotificationHelper {
             } else {
                 psdAddRiskAssessmentPage.clickNoToAddAnotherRiskAssessment();
                 psdAddRiskAssessmentPage.clickContinue();
+            }
+        })
+    }
+
+    /**
+     * Helper method to add corrective action to a notification
+     * @param {*} dataTable 
+     */
+    addACorrectiveActionToANotification(dataTable) {
+        cy.wait(3000);
+        PSDBasePage.followLink("Record a corrective action");
+
+        const psdActionPage = new PSDRecordCorrectiveActionPage();
+        const data = dataTable.hashes();
+
+        data.forEach((row, index) => {
+            psdActionPage.addCorrectiveAction(dataTable);
+            if (index < data.length - 1) {
+                psdActionPage.clickYesAddAnotherAction();
+                psdActionPage.clickContinue();
+            } else {
+                psdActionPage.clickNoToAddAnotherAction();
+                psdActionPage.clickContinue();
             }
         })
     }
