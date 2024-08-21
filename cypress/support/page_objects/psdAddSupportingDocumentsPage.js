@@ -47,7 +47,7 @@ class PSDAddSupportingDocumentsPage {
      * @param {*} dataTable 
      */
     addSupportingDocuments(dataTable) {
-        cy.wait(3000);
+        cy.wait(1000);
         PSDBasePage.followLink("Add supporting documents");
 
         const data = dataTable.hashes();

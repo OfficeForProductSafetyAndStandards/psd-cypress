@@ -3,12 +3,14 @@ Feature: Create PSD new business
     I want to be able to create a new business
     So that I have the business record created that can be used for a notification
 
+    Background: Background name
+
+        Given the user logs into PSD system
 
     @SmokeTest
     Scenario Outline: Create new business
 
-        Given the user logs into PSD system
-        And the user creates a product record with the following data:
+        Given the user creates a product record with the following data:
             | DoesProductHasBarcode   | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit   | ProductMarking   | ManufacturerBrandName | ProductName   | UploadProductImage | MarketBeforeJan2021   | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |
             | <DoesProductHasBarcode> | Random        | Random          | Random             | <IsProductCounterfeit> | <ProductMarking> | Random                | <ProductName> | No                 | <MarketBeforeJan2021> | ASIN                    | as.co.uk | Random          | desc                 |
         And the user start to create a new product safety notification
@@ -28,9 +30,80 @@ Feature: Create PSD new business
             | TakenCorrectiveAction | ActionBeingTaken          | ActionDate | Legislation | ResponsibleBusiness | IsActionMandatory | GeographicRegions   | FurtherDetails | UploadActionFiles | FileName  |
             | Yes                   | Import rejected at border | 10/2/2024  | Random      | Random              | Yes               | Local,Great Britain | QA Auto test   | Yes               | docx.docx |
 
+        And the user follows "Check the notification details and submit" link
+        And the user should see the following text on the page:
+            | Text                                      |
+            | Check the notification details and submit |
+            | NotificationName                          |
+            | Notification details                      |
+
+        When the user verifies the following data on submit notification page and submit the notification:
+            | Key                               | Value                                                                                                          |
+            | Notification number               | Random                                                                                                         |
+            | Notification title                | Random                                                                                                         |
+            | Notification summary              | Auto Test notification summary                                                                                 |
+            | Notification reason               | Unsafe or non-compliant product(s)                                                                             |
+            | Specific product safety issues    | Product harm: Random,Harm to health,Product incomplete markings,labeling or other issues,Product non-compliant |
+            | Reported by overseas regulator    | Yes: Random                                                                                                    |
+            | Internal reference number         | Not provided                                                                                                   |
+            | Number of affected products       | BrandName ProductName: Not relevant                                                                            |
+            | Batch numbers                     | 1231231232                                                                                                     |
+            | Customs codes                     | Not provided                                                                                                   |
+            | Business role in the supply chain | Retailer                                                                                                       |
+            | Registered or legal name          | Random                                                                                                         |
+            | Companies House number            | Random                                                                                                         |
+            | Address                           | Line1,AA1 1AA,Random                                                                                           |
+            | Contact details                   | Not provided                                                                                                   |
+            | Test reports                      | docx.docx (opens in new tab)                                                                                   |
+            | Risk assessments                  | Serious risk: BrandName ProductName                                                                            |
+            | Supporting images                 | file_example_JPG_500kB.jpg (opens in new tab)                                                                  |
+            | Supporting documents              | docx.docx (opens in new tab)                                                                                   |
+            | Notification risk level           | Serious risk                                                                                                   |
+            | Corrective action                 | Import rejected at border                                                                                      |
+            | Effective date                    | 10 February 2024                                                                                               |
+            | Legislation                       | Random                                                                                                         |
+            | Responsible business              | Random                                                                                                         |
+            | Action type                       | Mandatory                                                                                                      |
+            | Geographic scope                  | Great Britain                                                                                                  |
+            | Further details                   | QA Auto test                                                                                                   |
+            | Related file                      | docx.docx (opens in new tab)                                                                                   |
+
+        Then the user should see the following text on the page:
+            | Text                                                 |
+            | Notification submitted                               |
+            | Notification reference number                        |
+            | NotificationNumber                                   |
+            | You have successfully submitted the notification for |
+            | NotificationName                                     |
+
         Examples:
             | DoesProductHasBarcode | IsProductCounterfeit | ProductMarking | ProductName | MarketBeforeJan2021 | ExpBarcode | ExpMarketDate              | ExpCounterfeit                                      | ExpProductMarking |
             | No                    | No                   | No             | Random      | No                  |            | On or after 1 January 2021 | No - This product record is about a genuine product | None              |
 
 
+
+    Scenario Outline: Search and select a notification
+
+        Given the user navigates to "<url>" url in PSD
+        Given the user select "AutoTestPSDNotification_46919" notification to make changes
+        Given the user follows "Check the notification details and submit" link
+
+        Then the user should see the following text on the page:
+            | Text                                      |
+            | Check the notification details and submit |
+            | NotificationName                          |
+            | Notification details                      |
+
+        Then the user should see the following notification details on the page:
+            | Key                            | Value                                                                                                          |
+            | Notification number            | Random                                                                                                         |
+            | Notification title             | Random                                                                                                         |
+            | Notification summary           | Auto Test notification summary                                                                                 |
+            | Notification reason            | Unsafe or non-compliant product(s)                                                                             |
+            | Specific product safety issues | Product harm: Random,Harm to health,Product incomplete markings,labeling or other issues,Product non-compliant |
+            | Number of affected products    | BrandName ProductName: Not relevant                                                                            |
+
+        Examples:
+            | url                              |
+            | notifications/your-notifications |
 

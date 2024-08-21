@@ -48,7 +48,6 @@ class PSDProductsPage {
      * @param {*} productName 
      */
     searchAndSelectProduct(dataTable) {
-
         const rows = dataTable.hashes();
         const numberOfRows = rows.length;
 

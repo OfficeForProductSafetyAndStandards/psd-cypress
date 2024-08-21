@@ -201,7 +201,6 @@ class PSDAddNotificationAndProductSafetyDetailsPage
      * @param {*} dataTable 
      */
     addProductSafetyAndComplianceDetails(dataTable) {
-
         const data = dataTable.hashes();
         const headers = dataTable.raw()[0];
 

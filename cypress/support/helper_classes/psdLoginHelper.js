@@ -3,7 +3,7 @@ import LoginPage from "../page_objects/psdLoginPage";
 
 class PSDLoginHelper 
 {
-    login( emailId ) {
+    login() {
 
         // cy.visit(Cypress.env("URL"));
         const loginpage = new LoginPage();
