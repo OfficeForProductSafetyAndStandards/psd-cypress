@@ -36,7 +36,7 @@ class PSDCreateNotificationHelper {
      * @param {*} dataTable 
      */
     addRiskAssessmentToANotification(dataTable) {
-        cy.wait(3000);
+        cy.wait(1000);
         PSDBasePage.followLink("Add risk assessments");
 
         const psdAddRiskAssessmentPage = new PSDAddRiskAssessmentPage();
@@ -59,7 +59,7 @@ class PSDCreateNotificationHelper {
      * @param {*} dataTable 
      */
     addACorrectiveActionToANotification(dataTable) {
-        cy.wait(3000);
+        cy.wait(1000);
         PSDBasePage.followLink("Record a corrective action");
 
         const psdActionPage = new PSDRecordCorrectiveActionPage();

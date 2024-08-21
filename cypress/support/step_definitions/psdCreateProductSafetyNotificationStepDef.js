@@ -10,6 +10,7 @@ import PSDAddSupportingImagesPage from "../page_objects/psdAddSupportingImagesPa
 import PSDAddSupportingDocumentsPage from "../page_objects/psdAddSupportingDocumentsPage";
 import PSDEvaluateNotificationRiskLevelPage from "../page_objects/psdEvaluateNotificationRiskLevelPage";
 import PSDBasePage from "../page_objects/psdBasePage";
+import PSDSubmitNotificationPage from "../page_objects/psdSubmitNotificationPage";
 
 
 /********************** Step definitions **********************/
@@ -67,4 +68,26 @@ Given("the user add the following product identification and evidence details:",
 Given("the user add a corrective action with the following details:", function (dataTable) {
     const psdCreateNotificationHelper = new PSDCreateNotificationHelper();
     psdCreateNotificationHelper.addACorrectiveActionToANotification(dataTable);
+})
+
+Given("the user select {string} notification to make changes", function (notificationTitle) {
+    const psdNotificationsPage = new PSDNotificationsPage();
+    psdNotificationsPage.clickMakeChangesForGivenNotificationTitle(notificationTitle);
+})
+
+Then("the user should see the following notification details on the page:", function (dataTable) {
+    const psdSubmitNotificationPage = new PSDSubmitNotificationPage();
+    psdSubmitNotificationPage.assertNotificationDetails(dataTable);
+})
+
+When("the user verifies the following data on submit notification page and submit the notification:", function (dataTable) {
+    const psdSubmitNotificationPage = new PSDSubmitNotificationPage();
+    psdSubmitNotificationPage.assertNotificationDetails(dataTable);
+    psdSubmitNotificationPage.clickSubmitNotificationButton();
+})
+
+When("the user verifies the following data on submit notification page and save the notification as draft:", function (dataTable) {
+    const psdSubmitNotificationPage = new PSDSubmitNotificationPage();
+    psdSubmitNotificationPage.assertNotificationDetails(dataTable);
+    psdSubmitNotificationPage.clickSaveAsDraftButton();
 })

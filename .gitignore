@@ -1,2 +1,12 @@
 node_modules
 .DS_Store
+
+# Cypress test report files
+cypress/results
+cypress/reports/
+cypress/videos/
+cypress/screenshots/
+cypress/cucumberReports/
+cypress/downloads/
+cucumber-messages.ndjson
+mochawesome-report/

@@ -37,7 +37,7 @@ class PSDAddSupportingImagesPage {
      * @param {*} dataTable 
      */
     addSupportingImages(dataTable) {
-        cy.wait(3000);
+        cy.wait(1000);
         PSDBasePage.followLink("Add supporting images"); 
 
         const data = dataTable.hashes();

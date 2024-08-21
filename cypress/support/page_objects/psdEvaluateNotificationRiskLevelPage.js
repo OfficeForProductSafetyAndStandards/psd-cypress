@@ -34,7 +34,7 @@ class PSDEvaluateNotificationRiskLevelPage {
      * @param {*} dataTable 
      */
     addNotificationRiskLevel(dataTable) {
-        cy.wait(3000);
+        cy.wait(1000);
         PSDBasePage.followLink("Evaluate notification risk level");
 
         dataTable.hashes().forEach((row) => {

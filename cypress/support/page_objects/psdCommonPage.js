@@ -1,11 +1,11 @@
-require('@cypress/xpath');
+/// <reference types="cypress" />
 
 class PSDCommonPage {
 
     /****************** page objects *****************/
 
     elements = {
-        pageBody: () => cy.xpath("//body", { timeout: 10000 }).should('exist')
+        pageBody: () => cy.get('body', { timeout: 10000 }).should('exist')
 
     }
 
@@ -16,7 +16,19 @@ class PSDCommonPage {
      * @param {*} expText 
      */
     assertTextPresentOnPage(expText) {
-        this.elements.pageBody().should('contain.text', expText);
+        if (expText.toLowerCase() === 'notificationname') {
+            cy.get('@productMfrBrandName').then((brand) => {
+                cy.get('@productName').then((product) => {
+                    this.elements.pageBody().should('contain.text', brand + ' ' + product);
+                })
+            })
+        } else if (expText.toLowerCase() === 'notificationnumber') {
+            cy.get('@notificationNumber').then((number) => {
+                this.elements.pageBody().should('contain.text', number);
+            })
+        } else {
+            this.elements.pageBody().should('contain.text', expText);
+        }        
     }
 
     /**
