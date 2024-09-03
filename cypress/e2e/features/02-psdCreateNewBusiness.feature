@@ -85,8 +85,8 @@ Feature: Create PSD new business
     Scenario Outline: Search and select a notification
 
         Given the user navigates to "<url>" url in PSD
-        Given the user select "AutoTestPSDNotification_46919" notification to make changes
-        Given the user follows "Check the notification details and submit" link
+        And the user select "AutoTestPSDNotification_46919" notification to make changes
+        And the user follows "Check the notification details and submit" link
 
         Then the user should see the following text on the page:
             | Text                                      |
