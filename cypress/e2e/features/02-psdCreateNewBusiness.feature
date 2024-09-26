@@ -3,7 +3,7 @@ Feature: Create PSD new business
     I want to be able to create a new business
     So that I have the business record created that can be used for a notification
 
-    Background: Background name
+    Background: User Log into PSD application
 
         Given the user logs into PSD system
 
@@ -107,3 +107,9 @@ Feature: Create PSD new business
             | url                              |
             | notifications/your-notifications |
 
+
+# Business Search
+# Search using Business Type
+# Search using Primary Location
+# Search using Business Name
+# Search using Company number

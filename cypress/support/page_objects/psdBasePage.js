@@ -24,6 +24,18 @@ class PSDBasePage {
         cy.contains('a', linkText, { timeout: 10000 }).should('be.visible').click();
     }
 
+    /**
+     * Check the respective checkbox for the given label text
+     * @param {*} label 
+     */
+    static checkCheckboxForTheLabelText(label) {
+        cy.contains('label', label, { timeout: 10000 })
+            .invoke('attr', 'for')
+            .then((id) => {
+                cy.get(`#${id}`).should('exist').check();
+            })
+    }
+
 }
 
 export default PSDBasePage;
