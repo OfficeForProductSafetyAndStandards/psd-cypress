@@ -72,6 +72,35 @@ class PSDMenuPage
         this.elements.signOutLink().click();
     }
 
+    /************** Public methods *****************/
+
+    /**
+     * Navigate to the given page via header menu
+     * @param {*} menuOption 
+     */
+    navigateViaHeaderMenu(menuOption) {
+        switch (menuOption) {
+            case "Home":
+                this.navigateToHomePage();
+                break;           
+            case "Notifications":
+                this.navigateToNotificationsPage();
+                break;
+            case "Businesses":
+                this.navigateToBusinessesPage();
+                break;
+            case "Products":
+                this.navigateToProductsPage();
+                break;
+            case "Your account":
+                this.navigateToYourAccountPage();
+                break;
+            case "Your team":
+                this.navigateToYourTeamPage();
+                break;
+        }
+    }
+
 }
 
 export default PSDMenuPage;

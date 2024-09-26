@@ -91,3 +91,8 @@ When("the user verifies the following data on submit notification page and save 
     psdSubmitNotificationPage.assertNotificationDetails(dataTable);
     psdSubmitNotificationPage.clickSaveAsDraftButton();
 })
+
+When("the user submit the notification", function () {
+    const psdSubmitNotificationPage = new PSDSubmitNotificationPage();
+    psdSubmitNotificationPage.clickSubmitNotificationButton();
+})
