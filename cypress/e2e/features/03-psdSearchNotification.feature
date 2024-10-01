@@ -12,11 +12,11 @@ Feature: Search for a notification
 
         Given the user navigates to "notifications" url in PSD
 
-        When the user search for "Test Notification 123123123" notification
+        When the user search for "<NotificationTitle>" notification
 
         Then the user should see the following message on the page:
             | Message                                                                                                 |
-            | 0 notifications matching keyword(s) Test Notification 123123123, using the current filters, were found. |
+            | 0 notifications matching keyword(s) <NotificationTitle>, using the current filters, were found. |
 
         Examples:
             | NotificationTitle           |
