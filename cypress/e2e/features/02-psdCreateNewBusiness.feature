@@ -106,10 +106,3 @@ Feature: Create PSD new business
         Examples:
             | url                              |
             | notifications/your-notifications |
-
-
-# Business Search
-# Search using Business Type
-# Search using Primary Location
-# Search using Business Name
-# Search using Company number

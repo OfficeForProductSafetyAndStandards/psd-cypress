@@ -54,8 +54,7 @@ T
 
     /**
      * Set notification search filters
-     * @param {*} filterType 
-     * @param {*} filterLabel 
+     * @param {*} dataTable 
      */
     setNotificationSearchFilters(dataTable) {
         dataTable.hashes().forEach((row) => {
