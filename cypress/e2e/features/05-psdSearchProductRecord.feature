@@ -10,7 +10,7 @@ Feature: Search for a product record
         Given the user logs into PSD system
         And the user navigates to "products/all-products" url in PSD
 
-    
+
     # 0 Results displayed when searched with non-existing product name
     Scenario Outline: 1. Verify that no products are displayed when non available with the given product name
 
@@ -69,7 +69,7 @@ Feature: Search for a product record
             | FilterType            | FilterLabel |
             | Product record status | Retired     |
 
-    
+
     # Search using Country of Origin
     Scenario Outline: 5. Verify that a user can search for a product using Country of Origin filters
 
@@ -83,7 +83,7 @@ Feature: Search for a product record
             | FilterType        | FilterLabel    |
             | Country of origin | United Kingdom |
 
-    
+
     # Search using Notification type (Notification, Allegation (currently PSD 1.0 only), Enquiry (currently PSD 1.0 only), Project (currently PSD 1.0 only))
     Scenario Outline: 6. Verify that a user can search for a product using Notification type filters
 
@@ -100,3 +100,22 @@ Feature: Search for a product record
             | Notification type | Enquiry      |
             | Notification type | Project      |
 
+
+    Scenario Outline: 7. Verify that the user can search for the product using a combinations of different filters
+
+        When the user search for "<SearchText>" product with the following filters:
+            | FilterType            | FilterLabel           |
+            | Category              | <Category>            |
+            | Product record status | <ProductRecordStatus> |
+            | Country of origin     | <CountryOfOrigin>     |
+            | Notification type     | <NotificationType>    |
+
+        Then the user should see the "<ExpectedText>" text for the search results
+
+        Examples:
+            | SearchText            | Category          | ProductRecordStatus | CountryOfOrigin | NotificationType | ExpectedText                                                                                 |
+            | AutoTestPSDProd_48695 | Lighting chains   | Active              | Oman            | Notification     | 1 product matching keyword(s) AutoTestPSDProd_48695, using the current filters, was found.   |
+            | AutoTestPSDProd_48695 | Chemical products | Active              | Oman            | Notification     | 0 products matching keyword(s) AutoTestPSDProd_48695, using the current filters, were found. |
+            | AutoTestPSDProd_48695 | Lighting chains   | Retired             | Oman            | Notification     | 0 products matching keyword(s) AutoTestPSDProd_48695, using the current filters, were found. |
+            | AutoTestPSDProd_48695 | Lighting chains   | Active              | Abu Dhabi       | Notification     | 0 products matching keyword(s) AutoTestPSDProd_48695, using the current filters, were found. |
+            | AutoTestPSDProd_48695 | Lighting chains   | Active              | Oman            | Allegation       | 0 products matching keyword(s) AutoTestPSDProd_48695, using the current filters, were found. |

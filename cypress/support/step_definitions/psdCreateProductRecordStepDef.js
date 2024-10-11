@@ -16,7 +16,3 @@ Then("the user should see the following product data on view product page:", fun
     viewProductRecordPage.assertProductdetails(dataTable);
 })
 
-When("the user search for {string} product", function (productName) {
-    const psdProductsPage = new PSDProductsPage();
-    psdProductsPage.searchForAProduct(productName);
-})

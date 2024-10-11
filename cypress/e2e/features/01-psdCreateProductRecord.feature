@@ -86,7 +86,7 @@ Feature: Create PSD product record
             | PSD reference number   |
 
         Given the user navigates to "products/all-products" url in PSD
-        When the user search for "AutoTestPSDProd_39484" product
+        When the user search for "Random" product
 
         And the PSD reference number should match the pattern "psd-\d+"
         And the user click on the link "View the product record"
