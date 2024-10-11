@@ -15,7 +15,7 @@ Feature: Search for a business
 
         When the user search for "<SearchText>" business
 
-        Then the user should see the "0 businesses matching keyword(s) <SearchText>, were found." text for the business search results
+        Then the user should see the "0 businesses matching keyword(s) <SearchText>, were found." text for the search results
 
         Examples:
             | SearchText              |
@@ -29,7 +29,7 @@ Feature: Search for a business
 
         When the user search for "<SearchText>" business
 
-        Then the user should see the "1 business matching keyword(s) <SearchText>, was found." text for the business search results
+        Then the user should see the "1 business matching keyword(s) <SearchText>, was found." text for the search results
 
         Examples:
             | SearchText                     |
@@ -64,7 +64,7 @@ Feature: Search for a business
             | <FilterType1> | <FilterLabel1> |
             | <FilterType2> | <FilterLabel2> |
 
-        Then the user should see the "1 business matching keyword(s) <SearchText>, and matching selected filters was found." text for the business search results
+        Then the user should see the "1 business matching keyword(s) <SearchText>, and matching selected filters was found." text for the search results
         And the user should see the following data in the "<BusinessName>" business search result row:
             | Key             |
             | <BusinessName>  |
@@ -88,7 +88,7 @@ Feature: Search for a business
             | <FilterType1> | <FilterLabel1> |
             | <FilterType2> | <FilterLabel2> |
 
-        Then the user should see the "0 businesses matching keyword(s) <ExpectedText>, and matching selected filters were found." text for the business search results
+        Then the user should see the "0 businesses matching keyword(s) <ExpectedText>, and matching selected filters were found." text for the search results
 
         Examples:
             | SearchText                | FilterType1   | FilterLabel1 | FilterType2      | FilterLabel2   | ExpectedText              |

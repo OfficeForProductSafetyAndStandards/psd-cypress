@@ -56,8 +56,8 @@ class PSDBusinessSearchPage {
     /**
      * Verify that the business search results text match the regular expression
      */
-    verifyBusinessSearchResultsTextWithRegex() {
-        const regex = new RegExp(`^\\d+ businesses matching selected filters were found\\.$`);
+    verifySearchResultsTextWithRegex(expText) {
+        const regex = new RegExp(`^\\d+ ${expText}\\.$`);
         this.elements.searchResultsText().invoke('text') 
             .then((text) => {
                 const normalizedText = text.replace(/\s+/g, ' ').trim(); 
@@ -69,7 +69,7 @@ class PSDBusinessSearchPage {
      * Verify that the given text is displayed for the business search results
      * @param {*} expText 
      */
-    verifyBusinessSearchResultsText(expText) {
+    verifySearchResultsText(expText) {
         this.elements.searchResultsText().invoke('text') 
             .then((text) => {
                 const normalizedText = text.replace(/\s+/g, ' ').trim(); 
@@ -81,7 +81,7 @@ class PSDBusinessSearchPage {
      * Verify that the Business search results table contains given number of rows
      * @param {*} expNumberOfRows 
      */
-    verifyBusinessSearchResultTableBodyContainsRows(condition, expNumberOfRows) {
+    verifySearchResultTableBodyContainsRows(condition, expNumberOfRows) {
         this.elements.businessSearchResultsTableBody()
             .find('tr')
             .should(condition, expNumberOfRows);
