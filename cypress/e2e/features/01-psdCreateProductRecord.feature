@@ -109,9 +109,3 @@ Feature: Create PSD product record
             | DoesProductHasBarcode | IsProductCounterfeit | ProductMarking | MarketBeforeJan2021 | ExpBarcode | ExpMarketDate              | ExpCounterfeit                                           | ExpProductMarking |
             | No                    | No                   | No             | No                  |            | On or after 1 January 2021 | No - This product record is about a genuine product      | None              |
       
-
-      # Product Search
-# Search using different Category
-# Search using Product record status (Active, Retired, All)
-# Search using Country of Origin
-# Search using Notification type (Notification, Allegation (currently PSD 1.0 only), Enquiry (currently PSD 1.0 only), Project (currently PSD 1.0 only))

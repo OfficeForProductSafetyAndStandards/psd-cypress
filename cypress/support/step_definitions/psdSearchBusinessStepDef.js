@@ -23,8 +23,8 @@ When("the user search for {string} business", function (businessName) {
 
 Then("the user should see the business search results", function () {
     const psdBusinessSearchPage = new PSDBusinessSearchPage();
-    psdBusinessSearchPage.verifyBusinessSearchResultsTextWithRegex();
-    psdBusinessSearchPage.verifyBusinessSearchResultTableBodyContainsRows('have.length.greaterThan', 0);
+    psdBusinessSearchPage.verifySearchResultsTextWithRegex('businesses matching selected filters were found');
+    psdBusinessSearchPage.verifySearchResultTableBodyContainsRows('have.length.greaterThan', 0);
 })
 
 Then("the user should see the following data in the {string} business search result row:", function (business, dataTable) {
@@ -32,7 +32,7 @@ Then("the user should see the following data in the {string} business search res
     psdBusinessSearchPage.verifyTheGivenDataInBusinessSearchResultsRow(business, dataTable);
 })
 
-Then("the user should see the {string} text for the business search results", function (expectedText) {
+Then("the user should see the {string} text for the search results", function (expectedText) {
     const psdBusinessSearchPage = new PSDBusinessSearchPage();
-    psdBusinessSearchPage.verifyBusinessSearchResultsText(expectedText);
+    psdBusinessSearchPage.verifySearchResultsText(expectedText);
 })
