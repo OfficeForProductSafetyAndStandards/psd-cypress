@@ -6,7 +6,8 @@ class PSDViewProductRecordPage
     /****************** page objects *****************/
 
     elements = {
-        pageContent : () => cy.get('section#page-content', { timeout: 10000 }).should('exist')
+        pageContent : () => cy.get('section#page-content', { timeout: 10000 }).should('exist'),
+        editThisProductRecordButton : () => cy.contains('a', 'Edit this product record', { timeout: 10000 }).should('exist')
 
     }
 
@@ -46,6 +47,13 @@ class PSDViewProductRecordPage
                 this.elements.pageContent().find('dt').contains(row.Key).next('dd').should('have.text', row.Value);
             }
         })        
+    }
+
+    /**
+     * Click on Edit this product record button
+     */
+    clickEditThisProductRecord() {
+        this.elements.editThisProductRecordButton().click();
     }
 
 

@@ -1,4 +1,4 @@
-require('@cypress/xpath');
+/// <reference types="cypress" />
 
 import PSDRandomTestDataHelper from '../helper_classes/psdRandomTestDataHelper';
 
@@ -7,34 +7,34 @@ class PSDCreateProductRecordPage
     /****************** page objects *****************/
 
     elements = {
-        barcodeYesRadioButton : () => cy.xpath("//input[@id='product-duplicate-check-form-has-barcode-true-field']", { timeout: 10000 }).should('exist'),
-        barcodeNoRadioButton : () => cy.xpath("//input[@id='product-duplicate-check-form-has-barcode-false-field']", { timeout: 10000 }).should('exist'),
-        barcodeNumberTextField : () => cy.xpath("//input[@id='product-duplicate-check-form-barcode-field']", { timeout: 10000 }).should('exist'),        
-        continueButton : () => cy.xpath("//button[contains(text(), 'Continue')]", { timeout: 10000 }).should('exist'),
+        barcodeYesRadioButton : () => cy.get('input#product-duplicate-check-form-has-barcode-true-field', { timeout: 10000 }).should('exist'),
+        barcodeNoRadioButton : () => cy.get('input#product-duplicate-check-form-has-barcode-false-field', { timeout: 10000 }).should('exist'),
+        barcodeNumberTextField : () => cy.get('input#product-duplicate-check-form-barcode-field', { timeout: 10000 }).should('exist'),        
+        continueButton: () => cy.contains('button', 'Continue', { timeout: 10000 }).should('exist'),
 
-        productCategoryDropdown : () => cy.xpath("//select[@id='product-category-field']", { timeout: 10000 }).should('exist'),
-        productSubcategoryTextField : () => cy.xpath("//input[@id='product-subcategory-field']", { timeout: 10000 }).should('exist'),
-        productCounterfeitYesRadioButton : () => cy.xpath("//input[@id='product-authenticity-counterfeit-field']", { timeout: 10000 }).should('exist'),
-        productCounterfeitNoRadioButton : () => cy.xpath("//input[@id='product-authenticity-genuine-field']", { timeout: 10000 }).should('exist'),
-        productCounterfeitUnsureRadioButton : () => cy.xpath("//input[@id='product-authenticity-unsure-field']", { timeout: 10000 }).should('exist'),
-        productMarkingYesRadioButton : () => cy.xpath("//input[@id='product-has-markings-markings-yes-field']", { timeout: 10000 }).should('exist'),
-        productMarkingNoRadioButton : () => cy.xpath("//input[@id='product-has-markings-markings-no-field']", { timeout: 10000 }).should('exist'),
-        productMarkingUnknownRadioButton : () => cy.xpath("//input[@id='product-has-markings-markings-unknown-field']", { timeout: 10000 }).should('exist'),
-        productMarkingUKCACheckbox : () => cy.xpath("//input[@id='product-markings-ukca-field']", { timeout: 10000 }).should('exist'),
-        productMarkingUKNICheckbox : () => cy.xpath("//input[@id='product-markings-ukni-field']", { timeout: 10000 }).should('exist'),
-        productMarkingCECheckbox : () => cy.xpath("//input[@id='product-markings-ce-field']", { timeout: 10000 }).should('exist'),
-        manufacturerBrandNameTextField : () => cy.xpath("//input[@id='product-brand-field']", { timeout: 10000 }).should('exist'),
-        productNameTextField : () => cy.xpath("//input[@id='product-name-field']", { timeout: 10000 }).should('exist'),
-        fileUploadButton : () => cy.xpath("//input[@id='product-image-field']", { timeout: 10000 }).should('exist'),
-        marketBefore2021YesRadioButton : () => cy.xpath("//input[@id='product-when-placed-on-market-before-2021-field']", { timeout: 10000 }).should('exist'),
-        marketBefore2021NoRadioButton : () => cy.xpath("//input[@id='product-when-placed-on-market-on-or-after-2021-field']", { timeout: 10000 }).should('exist'),
-        marketBefore2021UnknownRadioButton : () => cy.xpath("//input[@id='product-when-placed-on-market-unknown-date-field']", { timeout: 10000 }).should('exist'),
-        productBarcodeNumberTextField : () => cy.xpath("//input[@id='product-barcode-field']", { timeout: 10000 }).should('exist'),
-        productIdentifiersTextField : () => cy.xpath("//textarea[@id='product-product-code-field']", { timeout: 10000 }).should('exist'),
-        webpageTextField : () => cy.xpath("//input[@id='product-webpage-field']", { timeout: 10000 }).should('exist'),
-        countryOfOriginDropdown : () => cy.xpath("//select[@id='product-country-of-origin-field']", { timeout: 10000 }).should('exist'),
-        productDescriptionTextField : () => cy.xpath("//textarea[@id='product-description-field']", { timeout: 10000 }).should('exist'),
-        saveButton : () => cy.xpath("//button[@data-cy='save']", { timeout: 10000 }).should('exist')
+        productCategoryDropdown : () => cy.get('select#product-category-field', { timeout: 10000 }).should('exist'),
+        productSubcategoryTextField : () => cy.get('input#product-subcategory-field', { timeout: 10000 }).should('exist'),
+        productCounterfeitYesRadioButton : () => cy.get('input#product-authenticity-counterfeit-field', { timeout: 10000 }).should('exist'),
+        productCounterfeitNoRadioButton : () => cy.get('input#product-authenticity-genuine-field', { timeout: 10000 }).should('exist'),
+        productCounterfeitUnsureRadioButton : () => cy.get('input#product-authenticity-unsure-field', { timeout: 10000 }).should('exist'),
+        productMarkingYesRadioButton : () => cy.get('input#product-has-markings-markings-yes-field', { timeout: 10000 }).should('exist'),
+        productMarkingNoRadioButton : () => cy.get('input#product-has-markings-markings-no-field', { timeout: 10000 }).should('exist'),
+        productMarkingUnknownRadioButton : () => cy.get('input#product-has-markings-markings-unknown-field', { timeout: 10000 }).should('exist'),
+        productMarkingUKCACheckbox : () => cy.get('input#product-markings-ukca-field', { timeout: 10000 }).should('exist'),
+        productMarkingUKNICheckbox : () => cy.get('input#product-markings-ukni-field', { timeout: 10000 }).should('exist'),
+        productMarkingCECheckbox : () => cy.get('input#product-markings-ce-field', { timeout: 10000 }).should('exist'),
+        manufacturerBrandNameTextField : () => cy.get('input#product-brand-field', { timeout: 10000 }).should('exist'),
+        productNameTextField : () => cy.get('input#product-name-field', { timeout: 10000 }).should('exist'),
+        fileUploadButton : () => cy.get('input#product-image-field', { timeout: 10000 }).should('exist'),
+        marketBefore2021YesRadioButton : () => cy.get('input#product-when-placed-on-market-before-2021-field', { timeout: 10000 }).should('exist'),
+        marketBefore2021NoRadioButton : () => cy.get('input#product-when-placed-on-market-on-or-after-2021-field', { timeout: 10000 }).should('exist'),
+        marketBefore2021UnknownRadioButton : () => cy.get('input#product-when-placed-on-market-unknown-date-field', { timeout: 10000 }).should('exist'),
+        productBarcodeNumberTextField : () => cy.get('input#product-barcode-field', { timeout: 10000 }).should('exist'),
+        productIdentifiersTextField : () => cy.get('textarea#product-product-code-field', { timeout: 10000 }).should('exist'),
+        webpageTextField : () => cy.get('input#product-webpage-field', { timeout: 10000 }).should('exist'),
+        countryOfOriginDropdown : () => cy.get('select#product-country-of-origin-field', { timeout: 10000 }).should('exist'),
+        productDescriptionTextField : () => cy.get('textarea#product-description-field', { timeout: 10000 }).should('exist'),
+        saveButton : () => cy.contains('button', 'Save', { timeout: 10000 }).should('exist')
 
     }
 
