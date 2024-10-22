@@ -8,14 +8,15 @@ class PSDProductsPage {
 
     elements = {
         createProductRecordButton: () => cy.contains('a', 'Create a product record', { timeout: 10000 }).should('exist'),
-        searchTextField: () => cy.get('input#q', { timeout: 10000 }).should('exist'),
+        searchTextField: () => cy.get('input[name="q"]', { timeout: 10000 }).should('exist'),
         searchButton: () => cy.contains('span', 'Search', { timeout: 10000 }).should('exist').parent(),
         addAnotherProductYesRadioButton: () => cy.get('input#search-for-or-add-a-product-form-add-another-product-true-field', { timeout: 10000 }).should('exist'),
         addAnotherProductNoRadioButton: () => cy.get('input#search-for-or-add-a-product-form-add-another-product-field', { timeout: 10000 }).should('exist'),
         continueButton: () => cy.contains('button', 'Continue', { timeout: 10000 }).should('exist'),
         categoryDropdown: () => cy.get('select#category', { timeout: 10000 }).should('exist'),
         applyButton : () => cy.get('input[value="Apply"]', { timeout: 10000 }).should('exist'),
-        productSearchResultsTable : () => cy.get('div[aria-label="Products"]>table', { timeout: 10000 }).should('exist')
+        productSearchResultsTable : () => cy.get('div[aria-label="Products"]>table', { timeout: 10000 }).should('exist'),
+        productSearchResultProductNameLink : () => cy.get('th#item-0 a', { timeout: 10000 }).should('exist')
 
 
 
@@ -128,6 +129,13 @@ class PSDProductsPage {
                 expect($tbody.text().trim()).to.contain(expectedText);
             })
         })
+    }
+
+    /**
+     * Click on the product name link in the searc results table after searching for the product
+     */
+    clickProductNameLinkInSearchResultsTable() {
+        this.elements.productSearchResultProductNameLink().click();
     }
 
 
