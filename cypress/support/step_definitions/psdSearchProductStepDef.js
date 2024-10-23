@@ -11,6 +11,12 @@ When("the user search for {string} product", function (productName) {
     psdProductsPage.searchForAProduct(productName);
 })
 
+When("the user search and view the {string} product", function (productName) {
+    const psdProductsPage = new PSDProductsPage();
+    psdProductsPage.searchForAProduct(productName);
+    psdProductsPage.clickProductNameLinkInSearchResultsTable();
+})
+
 When("the user apply the following product search filters:", function (dataTable) {
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.setProductSearchFilters(dataTable);
