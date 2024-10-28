@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "@cypress/xpath": "^2.0.3",
-    "axe-core": "^4.8.1",
+    "axe-core": "^4.10.1",
     "chai": "^5.0.0",
     "chai-uuid": "^1.0.6",
     "cypress": "^13.12.0",

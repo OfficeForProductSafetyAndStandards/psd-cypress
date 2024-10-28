@@ -35,8 +35,6 @@ Feature: Add, Edit and Remove image in a PSD product record
         And the user submit the notification
         And the user navigates to "Products" page from the header menu
         And the user follows "All products - Search" link
-        # And the user navigates to "products/all-products" url in PSD
-        # And the user search for "Random" product
         And the user search and view the "Random" product
 
         When the user add "<ImageName>" image to the product
