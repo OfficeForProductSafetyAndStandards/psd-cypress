@@ -2,6 +2,7 @@
 
 import PSDProductsPage from "../page_objects/psdProductsPage";
 import PSDBusinessSearchPage from "../page_objects/psdBusinessSearchPage";
+import PSDViewProductRecordPage from "../page_objects/psdViewProductRecordPage";
 
 
 /**************** Step definitions ********************/
@@ -15,6 +16,11 @@ When("the user search and view the {string} product", function (productName) {
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.searchForAProduct(productName);
     psdProductsPage.clickProductNameLinkInSearchResultsTable();
+    cy.wait(2000);
+
+    const psdViewProductRecordPage = new PSDViewProductRecordPage();
+    psdViewProductRecordPage.clickShowAllSections();
+
 })
 
 When("the user apply the following product search filters:", function (dataTable) {
