@@ -10,7 +10,8 @@ class PSDViewProductRecordPage
         editThisProductRecordButton : () => cy.contains('a', 'Edit this product record', { timeout: 10000 }).should('exist'),
         addImageLink : () => cy.contains('a', 'Add an image', { timeout: 10000 }).should('exist'),
         removeImageLink : () => cy.contains('a', 'Remove this image', { timeout: 10000 }).should('exist'),
-        deleteImageButton : () => cy.contains('button', 'Delete image', { timeout: 10000 }).should('exist')
+        deleteImageButton : () => cy.contains('button', 'Delete image', { timeout: 10000 }).should('exist'),
+        showAllSections : () => cy.get('span.govuk-accordion__show-all-text', { timeout: 10000 }).should('exist')
 
     }
 
@@ -74,7 +75,7 @@ class PSDViewProductRecordPage
     clickShowImagesLink() {
         cy.get(this.showImagesLinkCssSelector)
             .then(($button) => {
-                if ($button.is(':visible')) {
+                if ($button.is(':visible') && $button.text().trim() === 'Show') {
                 cy.wrap($button).click(); // Click only if the button is visible
                 } else {
                 // No action if the button is not visible
@@ -112,10 +113,25 @@ class PSDViewProductRecordPage
     }
 
     /**
-     * 
+     * Click on Delete images
      */
     clickDeleteImage() {
         this.elements.deleteImageButton().click();
+    }
+
+    /**
+     * Click on Show All sections
+     */
+    clickShowAllSections() {
+        this.elements.showAllSections()
+            .then(($button) => {
+                if ($button.is(':visible') && $button.text().trim() === 'Show all sections') {
+                    cy.wrap($button).click(); // Click only if the button is visible
+                } else {
+                // No action if the button is not visible
+                    cy.log('Show all sections link is not visible, no action taken');
+                }
+            });
     }
 
 

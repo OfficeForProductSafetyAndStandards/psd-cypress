@@ -1,6 +1,6 @@
 Feature: Add, Edit and Remove image in a PSD product record
     As a owner of a PSD product
-    I want to be able to eAdd, edit and remove an image in a product record
+    I want to be able to Add, edit and remove an image in a product record
     So that I have imaged added, edited, removed in the product record that can be used for a notification
 
 
