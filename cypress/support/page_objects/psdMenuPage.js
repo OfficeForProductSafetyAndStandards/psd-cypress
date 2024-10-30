@@ -1,17 +1,19 @@
-require('@cypress/xpath');
+/// <reference types="cypress" />
 
 class PSDMenuPage
 {
     /****************** page objects *****************/
 
     elements = {
-        homeLink: () => cy.xpath("//a[contains(text(), 'Home')]", { timeout: 10000 }).should('be.visible'),
-        notificationsLink: () => cy.xpath("//a[contains(text(), 'Notifications')]", { timeout: 10000 }).should('be.visible'),
-        businessesLink: () => cy.xpath("//a[contains(text(), 'Businesses')]", { timeout: 10000 }).should('be.visible'),
-        productsLink: () => cy.xpath("//a[contains(text(), 'Products')]", { timeout: 10000 }).should('be.visible'),
-        yourTeamLink: () => cy.xpath("//a[contains(text(), 'Your team')]", { timeout: 10000 }).should('be.visible'),
-        yourAccountLink: () => cy.xpath("//a[contains(text(), 'Your account')]", { timeout: 10000 }).should('be.visible'),
-        signOutLink: () => cy.xpath("//a[contains(text(), 'Sign out')]", { timeout: 10000 }).should('be.visible')
+        homeLink: () => cy.contains('a', 'Home', { timeout: 10000 }).should('exist'),
+        notificationsLink: () => cy.contains('a', 'Notifications', { timeout: 10000 }).should('exist'),
+        businessesLink: () => cy.contains('a', 'Businesses', { timeout: 10000 }).should('exist'),
+        productsLink: () => cy.contains('a', 'Products', { timeout: 10000 }).should('exist'),
+        riskAssessmentsLink: () => cy.contains('a', 'Risk assessments', { timeout: 10000 }).should('exist'),
+        yourTeamLink: () => cy.contains('a', 'Your team', { timeout: 10000 }).should('exist'),
+        yourAccountLink: () => cy.contains('a', 'Your account', { timeout: 10000 }).should('exist'),
+        signOutLink: () => cy.contains('a', 'Sign out', { timeout: 10000 }).should('exist')
+
     }
 
     /******************** methods *******************/
@@ -72,6 +74,14 @@ class PSDMenuPage
         this.elements.signOutLink().click();
     }
 
+    /**
+     * Navigate to Risk Assessments page
+     */
+    navigateToRiskAssessmentsPage()
+    {
+        this.elements.riskAssessmentsLink().click();
+    }
+
     /************** Public methods *****************/
 
     /**
@@ -97,6 +107,9 @@ class PSDMenuPage
                 break;
             case "Your team":
                 this.navigateToYourTeamPage();
+                break;
+            case "Risk assessments":
+                this.navigateToRiskAssessmentsPage();
                 break;
         }
     }
