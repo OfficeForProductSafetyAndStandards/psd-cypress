@@ -15,11 +15,11 @@ Feature: PSD products pages accessibility tests
         When the user validate the page for accessibility violation
         Then there should be no violation
 
-        When the user follows "<TeamProductsLink>" link
+        When the user follows the "<TeamProductsLink>" link
         And the user validate the page for accessibility violation
         Then there should be no violation
 
-        When the user follows "<AllProductsLink>" link
+        When the user follows the "<AllProductsLink>" link
         And the user validate the page for accessibility violation
         Then there should be no violation
 

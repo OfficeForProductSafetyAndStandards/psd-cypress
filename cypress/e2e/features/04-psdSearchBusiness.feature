@@ -13,7 +13,7 @@ Feature: Search for a business
     # 0 Results displayed when searched with non-existing business name
     Scenario Outline: 1. Verify that no notifications are displayed when non available with the given notification title
 
-        When the user search for "<SearchText>" business
+        When the user searches for the "<SearchText>" business
 
         Then the user should see the "0 businesses matching keyword(s) <SearchText>, were found." text for the search results
 
@@ -27,7 +27,7 @@ Feature: Search for a business
     # Search using Company number
     Scenario Outline: 2. Verify that a user can search for a business using Trading name, Registered or Legal name and Company number
 
-        When the user search for "<SearchText>" business
+        When the user searches for the "<SearchText>" business
 
         Then the user should see the "1 business matching keyword(s) <SearchText>, was found." text for the search results
 
@@ -44,7 +44,7 @@ Feature: Search for a business
     # Search using Business Type & Primary Location
     Scenario Outline: 3. Verify that a user can search for a business using Business Type filters
 
-        When the user apply the following business search filters:
+        When the user applies the following business search filters:
             | FilterType   | FilterLabel   |
             | <FilterType> | <FilterLabel> |
 
@@ -59,7 +59,7 @@ Feature: Search for a business
     # Search using combinations of filters
     Scenario Outline: 4. Verify that a user can search for a business using combination of different filters
 
-        When the user search for "<SearchText>" business with the following filters:
+        When the user searches for the "<SearchText>" business with the following filters:
             | FilterType    | FilterLabel    |
             | <FilterType1> | <FilterLabel1> |
             | <FilterType2> | <FilterLabel2> |
@@ -83,7 +83,7 @@ Feature: Search for a business
     # Search with wrong filters will return 0 results
     Scenario Outline: 5. Verify that when a user search for a business with wrong filters the no results displayed
 
-        When the user search for "<SearchText>" business with the following filters:
+        When the user searches for the "<SearchText>" business with the following filters:
             | FilterType    | FilterLabel    |
             | <FilterType1> | <FilterLabel1> |
             | <FilterType2> | <FilterLabel2> |

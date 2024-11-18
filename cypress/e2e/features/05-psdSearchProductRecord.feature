@@ -14,7 +14,7 @@ Feature: Search for a product record
     # 0 Results displayed when searched with non-existing product name
     Scenario Outline: 1. Verify that no products are displayed when non available with the given product name
 
-        When the user search for "<SearchText>" product
+        When the user searches for the "<SearchText>" product
 
         Then the user should see the "0 products matching keyword(s) Test product 123123123, using the current filters, were found." text for the search results
 
@@ -26,7 +26,7 @@ Feature: Search for a product record
     # Search using different Category
     Scenario Outline: 2. Verify that a user can search for different Category products using Category filters
 
-        When the user apply the following product search filters:
+        When the user applies the following product search filters:
             | FilterType   | FilterLabel   |
             | <FilterType> | <FilterLabel> |
 
@@ -42,7 +42,7 @@ Feature: Search for a product record
     # Search using Product record status (Active, Retired, All)
     Scenario Outline: 3. Verify that a user can search for a product using different product records statuses filters
 
-        When the user apply the following product search filters:
+        When the user applies the following product search filters:
             | FilterType   | FilterLabel   |
             | <FilterType> | <FilterLabel> |
 
@@ -57,7 +57,7 @@ Feature: Search for a product record
     # Search using Product record status (Active, Retired, All)
     Scenario Outline: 4. Verify that a user can search for a product using different product records statuse Retired filters
 
-        When the user apply the following product search filters:
+        When the user applies the following product search filters:
             | FilterType   | FilterLabel   |
             | <FilterType> | <FilterLabel> |
 
@@ -73,7 +73,7 @@ Feature: Search for a product record
     # Search using Country of Origin
     Scenario Outline: 5. Verify that a user can search for a product using Country of Origin filters
 
-        When the user apply the following product search filters:
+        When the user applies the following product search filters:
             | FilterType   | FilterLabel   |
             | <FilterType> | <FilterLabel> |
 
@@ -87,7 +87,7 @@ Feature: Search for a product record
     # Search using Notification type (Notification, Allegation (currently PSD 1.0 only), Enquiry (currently PSD 1.0 only), Project (currently PSD 1.0 only))
     Scenario Outline: 6. Verify that a user can search for a product using Notification type filters
 
-        When the user apply the following product search filters:
+        When the user applies the following product search filters:
             | FilterType   | FilterLabel   |
             | <FilterType> | <FilterLabel> |
 
@@ -103,7 +103,7 @@ Feature: Search for a product record
 
     Scenario Outline: 7. Verify that the user can search for the product using a combinations of different filters
 
-        When the user search for "<SearchText>" product with the following filters:
+        When the user searches for the "<SearchText>" product with the following filters:
             | FilterType            | FilterLabel           |
             | Category              | <Category>            |
             | Product record status | <ProductRecordStatus> |

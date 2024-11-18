@@ -15,7 +15,8 @@ class PSDNotificationsPage
         notificationSearchResultsTable : () => cy.get('div[aria-label="Notifications"]>table', { timeout: 10000 }).should('exist'),
         applyButton : () => cy.get('input[value="Apply"]', { timeout: 10000 }).should('exist'),
         notificationOwnerOtherPersonOrTeamDropdown : () => cy.get('select#case_owner_is_someone_else_id', { timeout: 10000 }).should('exist'),
-        teamsAddedToTheNotificationOthersTeamNameDropdown : () => cy.get('select#case_owner_is_someone_else_id', { timeout: 10000 }).should('exist')
+        teamsAddedToTheNotificationOthersTeamNameDropdown : () => cy.get('select#case_owner_is_someone_else_id', { timeout: 10000 }).should('exist'),
+        notificationSearchResultNotificationNameLink : () => cy.get('th[id*="investigation_"] a', { timeout: 10000 }).first().should('exist')
 
     }
 
@@ -198,6 +199,13 @@ T
      */
     selectTeamsAddedToTheNotificationOthersTeamName(teamName) {
         this.elements.teamsAddedToTheNotificationOthersTeamNameDropdown().select(teamName);
+    }
+
+    /**
+     * Click on the notification name link in the search results table after searching for the notification
+     */
+    clickNotificationNameLinkInSearchResultsTable() {
+        this.elements.notificationSearchResultNotificationNameLink().click();
     }
 
 

@@ -7,7 +7,7 @@ import PSDEditProductRecordHelper from "../helper_classes/psdEditProductRecordHe
 
 /********************** Step definitions **********************/
 
-When("the user edit the product record with the following data:", function (dataTable) {
+When("the user edits the product record with the following data:", function (dataTable) {
     const psdViewProductRecordPage = new PSDViewProductRecordPage();
     psdViewProductRecordPage.clickEditThisProductRecord();
 

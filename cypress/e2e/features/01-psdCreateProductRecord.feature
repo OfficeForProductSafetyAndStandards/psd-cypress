@@ -7,6 +7,7 @@ Feature: Create PSD product record
 
         Given the user logs into PSD system
 
+
     Scenario Outline: 1. Create a product record
 
         When the user creates a product record with the following data:
@@ -18,7 +19,7 @@ Feature: Create PSD product record
             | Product record created |
             | PSD reference number   |
         And the PSD reference number should match the pattern "psd-\d+"
-        And the user click on the link "View the product record"
+        And the user clicks on the link "View the product record"
         And the user should see the following product data on view product page:
             | Key                       | Value               |
             | Brand name                | Random              |
@@ -52,7 +53,7 @@ Feature: Create PSD product record
             | Product record created |
             | PSD reference number   |
         And the PSD reference number should match the pattern "psd-\d+"
-        And the user click on the link "View the product record"
+        And the user clicks on the link "View the product record"
         And the user should see the following product data on view product page:
             | Key                       | Value               |
             | Brand name                | Random              |
@@ -86,10 +87,10 @@ Feature: Create PSD product record
             | PSD reference number   |
 
         Given the user navigates to "products/all-products" url in PSD
-        When the user search for "Random" product
+        When the user searches for the "Random" product
 
         And the PSD reference number should match the pattern "psd-\d+"
-        And the user click on the link "View the product record"
+        And the user clicks on the link "View the product record"
         And the user should see the following product data on view product page:
             | Key                       | Value               |
             | Brand name                | Random              |
