@@ -132,7 +132,7 @@ class PSDProductsPage {
     }
 
     /**
-     * Click on the product name link in the searc results table after searching for the product
+     * Click on the product name link in the search results table after searching for the product
      */
     clickProductNameLinkInSearchResultsTable() {
         this.elements.productSearchResultProductNameLink().click();

@@ -7,12 +7,12 @@ import PSDViewProductRecordPage from "../page_objects/psdViewProductRecordPage";
 
 /**************** Step definitions ********************/
 
-When("the user search for {string} product", function (productName) {
+When("the user searches for the {string} product", function (productName) {
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.searchForAProduct(productName);
 })
 
-When("the user search and view the {string} product", function (productName) {
+When("the user searches for and views the {string} product", function (productName) {
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.searchForAProduct(productName);
     psdProductsPage.clickProductNameLinkInSearchResultsTable();
@@ -23,13 +23,13 @@ When("the user search and view the {string} product", function (productName) {
 
 })
 
-When("the user apply the following product search filters:", function (dataTable) {
+When("the user applies the following product search filters:", function (dataTable) {
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.setProductSearchFilters(dataTable);
     psdProductsPage.clickApplySearchFilters();
 })
 
-When("the user search for {string} product with the following filters:", function (productName, dataTable) {
+When("the user searches for the {string} product with the following filters:", function (productName, dataTable) {
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.setProductSearchFilters(dataTable);
     psdProductsPage.searchForAProduct(productName);

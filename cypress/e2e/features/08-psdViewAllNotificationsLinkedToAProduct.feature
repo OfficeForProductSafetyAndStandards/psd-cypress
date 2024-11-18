@@ -13,9 +13,9 @@ Feature: View all the notifications that are linked to a product
     Scenario Outline: Verify that a user can view all the notifications that are linked to a product
 
         Given the user navigates to "Products" page from the header menu
-        And the user follows "All products - Search" link
+        And the user follows the "All products - Search" link
 
-        When the user search and view the "QA Test Prod Eco-design 4" product
+        When the user searches for and views the "QA Test Prod Eco-design 4" product
 
         Then the user should see the following message on the page:
             | Message                  |
@@ -28,17 +28,17 @@ Feature: View all the notifications that are linked to a product
             | OPSS Incident Management |
             | Open                     |
 
-        When the user follows "<NotificationTitle1>" link
+        When the user follows the "<NotificationTitle1>" link
 
         Then the user should see the following message on the page:
             | Message                                                      |
             | QA Test Prod Eco-design Mfr brand4 QA Test Prod Eco-design 4 |
 
         When the user navigates to "Products" page from the header menu
-        And the user follows "All products - Search" link
-        And the user search and view the "QA Test Prod Eco-design 4" product
+        And the user follows the "All products - Search" link
+        And the user searches for and views the "QA Test Prod Eco-design 4" product
 
-        When the user follows "<NotificationTitle2>" link
+        When the user follows the "<NotificationTitle2>" link
 
         Then the user should see the following message on the page:
             | Message                                                  |

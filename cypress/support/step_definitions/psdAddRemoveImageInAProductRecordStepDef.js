@@ -6,7 +6,7 @@ import PSDViewProductRecordPage from "../page_objects/psdViewProductRecordPage";
 
 /*************** Step definitions *******************/
 
-When("the user add {string} image to the product", function (image) {
+When("the user adds {string} image to the product", function (image) {
     const psdViewProductRecordPage = new PSDViewProductRecordPage();
     psdViewProductRecordPage.clickShowImagesLink();
     psdViewProductRecordPage.clickAddImageLink();

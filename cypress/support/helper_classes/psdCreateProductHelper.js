@@ -35,6 +35,7 @@ class PSDCreateProductRecordHelper
             createproductpage.enterProductionDescription(row.DescriptionOfProduct);
         })
         createproductpage.clickSaveButton();
+        createproductpage.saveProductNumber();
     }
 
 

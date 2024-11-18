@@ -15,9 +15,9 @@ Feature: Edit PSD product record
         Given the user creates a product record with the following data:
             | DoesProductHasBarcode | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit | ProductMarking | ManufacturerBrandName | ProductName | UploadProductImage | MarketBeforeJan2021 | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |
             | No                    | Random        | Random          | Random             | No                   | No             | Random                | Random      | No                 | No                  | ASIN                    | as.co.uk | Random          | desc                 |
-        And the user click on the link "View the product record"
+        And the user clicks on the link "View the product record"
 
-        When the user edit the product record with the following data:
+        When the user edits the product record with the following data:
             | ProductCategory       | ProductSubcategory       | ProductMarking       | MarketBeforeJan2021       | BarcodeNumber | OtherProductIdentifiers       | Webpage       | CounrtyOfOrigin       | DescriptionOfProduct       |
             | <EditProductCategory> | <EditProductSubcategory> | <EditProductMarking> | <EditMarketBeforeJan2021> | <EditBarcode> | <EditOtherProductIdentifiers> | <EditWebpage> | <EditCounrtyOfOrigin> | <EditDescriptionOfProduct> |
 
@@ -52,28 +52,28 @@ Feature: Edit PSD product record
         Given the user creates a product record with the following data:
             | DoesProductHasBarcode | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit | ProductMarking | ManufacturerBrandName | ProductName | UploadProductImage | MarketBeforeJan2021 | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |
             | No                    | Random        | Random          | Random             | No                   | No             | Random                | Random      | No                 | No                  | ASIN                    | as.co.uk | Random          | desc                 |
-        And the user start to create a new product safety notification
-        And the user search and add the following products to the notification:
+        And the user starts to create a new product safety notification
+        And the user searches for and adds the following products to the notification:
             | ProductName |
             | Random      |
-        And the user add the following notification and product safety details:
+        And the user adds the following notification and product safety details:
             | NotificationTitle | NotificationSummary            | NotificationReason | ProductPrimaryHarm | ProductHarmInfo | ProductIncompleteMarkingsDescription | OverseasRegulatorCountry | ReferenceNumber |
             | Random            | Auto Test notification summary | Product is unsafe  | Random             | Harm to health  | Product non-compliant                | Random                   | No              |
-        And the user add a new business with the following data:
+        And the user adds a new business with the following data:
             | TradingName | LegalName | CompanyNumber | AddressLine1 | Postcode | Country | BusinessRole |
             | Random      | Random    | Random        | Line1        | AA1 1AA  | Random  | Retailer     |
-        And the user add the following product identification and evidence details:
+        And the user adds the following product identification and evidence details:
             | BatchNumber | WasTheTestFundedByOPSS | TestReportRelevantLegislation | TestStandard | DateOfTest | TestResult | TestReportFurtherDetails | TestReportFile | SupportingImage            | SupportingDocumentTitle | SupportingDocument | DateOfAssessment | RiskLevel    | AssessedBy               | RiskAssessmentFile | RiskAssessmentDetails | EvaluateRiskLevel |
             | 1231231232  | No                     | Random                        | OPSS         | 10/04/2024 | Pass       | QA Auto Test             | docx.docx      | file_example_JPG_500kB.jpg | Auto test doc           | docx.docx          | 10/04/2024       | Serious risk | OPSS Incident Management | docx.pdf           | Auto test assessment  | Serious risk      |
-        And the user add a corrective action with the following details:
+        And the user adds a corrective action with the following details:
             | TakenCorrectiveAction | ActionBeingTaken          | ActionDate | Legislation | ResponsibleBusiness | IsActionMandatory | GeographicRegions   | FurtherDetails | UploadActionFiles | FileName  |
             | Yes                   | Import rejected at border | 10/2/2024  | Random      | Random              | Yes               | Local,Great Britain | QA Auto test   | Yes               | docx.docx |
-        And the user follows "Check the notification details and submit" link
-        And the user submit the notification
+        And the user follows the "Check the notification details and submit" link
+        And the user submits the notification
         And the user navigates to "products/all-products" url in PSD
-        And the user search for "Random" product
+        And the user searches for the "Random" product
 
-        When the user edit the product record with the following data:
+        When the user edits the product record with the following data:
             | ProductCategory       | ProductSubcategory       | ProductMarking       | MarketBeforeJan2021       | BarcodeNumber | OtherProductIdentifiers       | Webpage       | CounrtyOfOrigin       | DescriptionOfProduct       |
             | <EditProductCategory> | <EditProductSubcategory> | <EditProductMarking> | <EditMarketBeforeJan2021> | <EditBarcode> | <EditOtherProductIdentifiers> | <EditWebpage> | <EditCounrtyOfOrigin> | <EditDescriptionOfProduct> |
 

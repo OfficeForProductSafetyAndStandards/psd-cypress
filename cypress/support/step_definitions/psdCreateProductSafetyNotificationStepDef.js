@@ -15,7 +15,7 @@ import PSDSubmitNotificationPage from "../page_objects/psdSubmitNotificationPage
 
 /********************** Step definitions **********************/
 
-Given("the user start to create a new product safety notification", function () {
+Given("the user starts to create a new product safety notification", function () {
     const psdMenuPage = new PSDMenuPage();
     psdMenuPage.navigateToNotificationsPage();    
 
@@ -30,14 +30,14 @@ Given("the user search and add {string} product to the notification", function (
     psdProductsPage.searchAndSelectProduct(productName);
 })
 
-Given("the user search and add the following products to the notification:", function (dataTable) {
+Given("the user searches for and adds the following products to the notification:", function (dataTable) {
     PSDBasePage.followLink("Search for or add a product");
 
     const psdProductsPage = new PSDProductsPage();
     psdProductsPage.searchAndSelectProduct(dataTable);
 })
 
-Given("the user add the following notification and product safety details:", function (dataTable) {
+Given("the user adds the following notification and product safety details:", function (dataTable) {
     PSDBasePage.followLink("Add notification details");
 
     const psdNotificationAndProductSafetyPage = new PSDAddNotificationAndProductSafetyDetailsPage();
@@ -46,7 +46,7 @@ Given("the user add the following notification and product safety details:", fun
     psdNotificationAndProductSafetyPage.addNumberOfAffectedProducts(dataTable);
 })
 
-Given("the user add the following product identification and evidence details:", function (dataTable) {
+Given("the user adds the following product identification and evidence details:", function (dataTable) {
     const psdAddProductIdentificationDetailsPage = new PSDAddProductIdentificationDetailsPage();
     psdAddProductIdentificationDetailsPage.addProductIdentificationDetails(dataTable);
 
@@ -65,12 +65,12 @@ Given("the user add the following product identification and evidence details:",
     psdEvaluateNotificationRiskLevelPage.addNotificationRiskLevel(dataTable);
 })
 
-Given("the user add a corrective action with the following details:", function (dataTable) {
+Given("the user adds a corrective action with the following details:", function (dataTable) {
     const psdCreateNotificationHelper = new PSDCreateNotificationHelper();
     psdCreateNotificationHelper.addACorrectiveActionToANotification(dataTable);
 })
 
-Given("the user select {string} notification to make changes", function (notificationTitle) {
+Given("the user selects the {string} notification to make changes", function (notificationTitle) {
     const psdNotificationsPage = new PSDNotificationsPage();
     psdNotificationsPage.clickMakeChangesForGivenNotificationTitle(notificationTitle);
 })
@@ -92,7 +92,7 @@ When("the user verifies the following data on submit notification page and save 
     psdSubmitNotificationPage.clickSaveAsDraftButton();
 })
 
-When("the user submit the notification", function () {
+When("the user submits the notification", function () {
     const psdSubmitNotificationPage = new PSDSubmitNotificationPage();
     psdSubmitNotificationPage.clickSubmitNotificationButton();
 })

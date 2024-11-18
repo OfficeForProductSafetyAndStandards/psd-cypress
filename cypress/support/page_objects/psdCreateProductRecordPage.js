@@ -34,7 +34,8 @@ class PSDCreateProductRecordPage
         webpageTextField : () => cy.get('input#product-webpage-field', { timeout: 10000 }).should('exist'),
         countryOfOriginDropdown : () => cy.get('select#product-country-of-origin-field', { timeout: 10000 }).should('exist'),
         productDescriptionTextField : () => cy.get('textarea#product-description-field', { timeout: 10000 }).should('exist'),
-        saveButton : () => cy.contains('button', 'Save', { timeout: 10000 }).should('exist')
+        saveButton : () => cy.contains('button', 'Save', { timeout: 10000 }).should('exist'),
+        productNumber : () => cy.get('div > strong', { timeout: 10000 }).should('exist')
 
     }
 
@@ -341,6 +342,17 @@ class PSDCreateProductRecordPage
     clickSaveButton()
     {
         this.elements.saveButton().click();
+    }
+
+    /**
+     * Save the product number that is shown on the page after a new product is created
+     */
+    saveProductNumber() {
+        this.elements.productNumber().invoke('text')
+            .then((text) => {
+                const number = text.match(/\d+/)[0];
+                cy.wrap(number).as('productNumber');
+            })
     }
 
     /************* Methods ***************/

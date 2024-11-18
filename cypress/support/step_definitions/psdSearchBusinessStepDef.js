@@ -4,19 +4,19 @@ import PSDBusinessSearchPage from "../page_objects/psdBusinessSearchPage";
 
 /********************** Step definitions **********************/
 
-When("the user search for {string} business with the following filters:", function (businessName, dataTable) {
+When("the user searches for the {string} business with the following filters:", function (businessName, dataTable) {
     const psdBusinessSearchPage = new PSDBusinessSearchPage();
     psdBusinessSearchPage.setBusinessSearchFilters(dataTable);
     psdBusinessSearchPage.searchForBusiness(businessName);
 })
 
-When("the user apply the following business search filters:", function (dataTable) {
+When("the user applies the following business search filters:", function (dataTable) {
     const psdBusinessSearchPage = new PSDBusinessSearchPage();
     psdBusinessSearchPage.setBusinessSearchFilters(dataTable);
     psdBusinessSearchPage.clickApplySearchFilters();
 })
 
-When("the user search for {string} business", function (businessName) {
+When("the user searches for the {string} business", function (businessName) {
     const psdBusinessSearchPage = new PSDBusinessSearchPage();
     psdBusinessSearchPage.searchForBusiness(businessName);
 })

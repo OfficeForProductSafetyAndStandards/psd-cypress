@@ -1,16 +1,14 @@
-Feature: Add, Edit and Remove image in a PSD product record
-    As a owner of a PSD product
-    I want to be able to Add, edit and remove an image in a product record
-    So that I have imaged added, edited, removed in the product record that can be used for a notification
-
+Feature: Add a product to an existing notification
+    As a logged in user of the PSD service
+    I want to be able to add a product to an existing notification
+    So that I have the product added to a notification
 
     Background: Log into PSD
 
         Given the user logs into PSD system
 
-
     @SmokeTest
-    Scenario Outline: Verify that an image can be added to a product that is added to a notification
+    Scenario Outline: Verify that a user can add a product to an existing notification
 
         Given the user creates a product record with the following data:
             | DoesProductHasBarcode | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit | ProductMarking | ManufacturerBrandName | ProductName | UploadProductImage | MarketBeforeJan2021 | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |
@@ -33,24 +31,29 @@ Feature: Add, Edit and Remove image in a PSD product record
             | Yes                   | Import rejected at border | 10/2/2024  | Random      | Random              | Yes               | Local,Great Britain | QA Auto test   | Yes               | docx.docx |
         And the user follows the "Check the notification details and submit" link
         And the user submits the notification
-        And the user navigates to "Products" page from the header menu
-        And the user follows the "All products - Search" link
-        And the user searches for and views the "Random" product
+        And the user creates a product record with the following data:
+            | DoesProductHasBarcode | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit | ProductMarking | ManufacturerBrandName | ProductName | UploadProductImage | MarketBeforeJan2021 | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |
+            | No                    | Random        | Random          | Random             | No                   | No             | Random                | Random      | No                 | No                  | ASIN                    | as.co.uk | Random          | desc                 |
+        And the user navigates to "Notifications" page from the header menu
+        And the user follows the "All notifications – Search" link
+        When the user searches for and views the "Random" notification
 
-        When the user adds "<ImageName>" image to the product
+        When the user follows the "Add another product" link
+        And the user adds an additional product with the "<ProdRefNumber>" reference number to the notification
 
-        Then the user should see the following message on the page:
-            | Message                |
-            | The image was uploaded |
-        And the user should see the following images added to the product:
-            | ImageName   | ImageHref   |
-            | <ImageName> | <ImageHref> |
+        Then the user should see the following text on the page:
+            | Text      |
+            | <ExpText> |
 
-        When the user deletes the product image
-        Then the user should see the following message on the page:
-            | Message                            |
-            | The image was successfully removed |
         Examples:
-            | ImageName                  | ImageHref                   |
-            | file_example_JPG_500kB.jpg | /file_example_JPG_500kB.jpg |
+            | ProdRefNumber | ExpText                                          |
+            | Random        | The product record was added to the notification |
+
+
+
+
+
+
+
+
 

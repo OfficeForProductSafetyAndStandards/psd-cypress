@@ -12,9 +12,9 @@ Feature: Search for PRISM Risk assessments
     Scenario Outline: Verify that a user can search for PRISM risk assessment using the product name
 
         Given the user navigates to "Risk assessments" page from the header menu
-        And the user follows "All risk assessments - Search" link
+        And the user follows the "All risk assessments - Search" link
 
-        When the user search for "<ProductName>" product
+        When the user searches for the "<ProductName>" product
 
         Then the user should see the "1 risk assessment matching keyword(s) <ProductName>, was found." text for the search results
         And the user should see the following text on the page:

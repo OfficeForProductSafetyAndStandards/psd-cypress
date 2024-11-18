@@ -29,7 +29,7 @@ Then("the user should see the following message on the page:", function (dataTab
     })
 })
 
-When("the user click on the link {string}", function (linkText) {
+When("the user clicks on the link {string}", function (linkText) {
     cy.contains('a', linkText).click();
 })
 
@@ -40,7 +40,7 @@ Then("the user should see the following text on the page:", function (dataTable)
     })
 })
 
-Given("the user follows {string} link", function (linkText) {
+Given("the user follows the {string} link", function (linkText) {
     PSDBasePage.followLink(linkText);
 })
 
