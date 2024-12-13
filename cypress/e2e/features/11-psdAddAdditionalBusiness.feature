@@ -1,14 +1,16 @@
-Feature: Add an additional product to an existing notification
-    As a logged in user of the PSD service
-    I want to be able to add a product to an existing notification
-    So that I have the product added to a notification
+Feature: Add an additional business to an existing notification
+    As a logged in user of the PSD service and the team member for the assigned team
+    I want to be able to add an additional business to an existing notification
+    So that I have the additional business added to a notification
+
 
     Background: Log into PSD
 
         Given the user logs into PSD system
 
+
     @SmokeTest
-    Scenario Outline: Verify that a user can add a product to an existing notification
+    Scenario Outline: Verify that a user can add an additional business to an existing notification
 
         Given the user creates a product record with the following data:
             | DoesProductHasBarcode | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit | ProductMarking | ManufacturerBrandName | ProductName | UploadProductImage | MarketBeforeJan2021 | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |
@@ -31,29 +33,22 @@ Feature: Add an additional product to an existing notification
             | Yes                   | Import rejected at border | 10/2/2024  | Random      | Random              | Yes               | Local,Great Britain | QA Auto test   | Yes               | docx.docx |
         And the user follows the "Check the notification details and submit" link
         And the user submits the notification
-        And the user creates a product record with the following data:
-            | DoesProductHasBarcode | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit | ProductMarking | ManufacturerBrandName | ProductName | UploadProductImage | MarketBeforeJan2021 | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |
-            | No                    | Random        | Random          | Random             | No                   | No             | Random                | Random      | No                 | No                  | ASIN                    | as.co.uk | Random          | desc                 |
         And the user navigates to "Notifications" page from the header menu
         And the user follows the "All notifications – Search" link
         And the user searches for and views the "Random" notification
 
-        When the user follows the "Add another product" link
-        And the user adds an additional product with the "<ProdRefNumber>" reference number to the notification
+        When the user create and add the following additional businesses to the notification:
+            | TradingName                     | LegalName                     | CompanyNumber                     | AddressLine1 | Postcode | Country   | BusinessRole   |
+            | <AdditionalBusinessTradingName> | <AdditionalBusinessLegalName> | <AdditionalBusinessCompanyNumber> | Line1        | AA1 1AA  | <Country> | <BusinessRole> |
 
-        Then the user should see the following text on the page:
-            | Text      |
-            | <ExpText> |
+        Then the user should see the following business details:
+            | Key                               | Value                             |
+            | Trading Name                      | <AdditionalBusinessTradingName>   |
+            | Business role in the supply chain | <BusinessRole>                    |
+            | Registered or legal name          | <AdditionalBusinessLegalName>     |
+            | Companies House number            | <AdditionalBusinessCompanyNumber> |
+            | Address                           | <Country>                         |
 
         Examples:
-            | ProdRefNumber | ExpText                                          |
-            | Random        | The product record was added to the notification |
-
-
-
-
-
-
-
-
-
+            | AdditionalBusinessTradingName | AdditionalBusinessLegalName | AdditionalBusinessCompanyNumber | Country        | BusinessRole      |
+            | Random                        | Random                      | Random                          | Western Sahara | Fulfillment house |

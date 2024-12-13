@@ -25,7 +25,7 @@ class PSDNotificationsPage
     notificationSearchResultsNotificationOwnerCss = 'td[headers*="caseowner"]';
 
     /******************** Getters & Setters *******************/
-T
+
     /**
      * Click on the Create a new product safety notification button
      */

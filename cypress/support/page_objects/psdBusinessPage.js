@@ -31,8 +31,10 @@ class PSDBusinessPage {
 
         addAnotherBusinessYesRadioButton: () => cy.get('input#search-for-or-add-a-business-form-add-another-business-true-field', { timeout: 10000 }).should('exist'),
         addAnotherBusinessNoRadioButton: () => cy.get('input#search-for-or-add-a-business-form-add-another-business-field', { timeout: 10000 }).should('exist'),
-        continueButton: () => cy.contains('button', 'Continue', { timeout: 10000 }).should('exist')
+        continueButton: () => cy.contains('button', 'Continue', { timeout: 10000 }).should('exist'),
 
+        addAdditionalBusinessAddAnotherBusinessYesRadioButton: () => cy.get('input#add-another-business-true-field', { timeout: 10000 }).should('exist'),
+        addAdditionalBusinessAddAnotherBusinessNoRadioButton: () => cy.get('input#add-another-business-field', { timeout: 10000 }).should('exist')
     }
 
     /******************** Getter & Setters *******************/
@@ -162,7 +164,23 @@ class PSDBusinessPage {
     clickNoAddAnotherBusinessAndContinue() {
         this.elements.addAnotherBusinessNoRadioButton().click();
         this.elements.continueButton().click();
-    }    
+    }   
+    
+    /**
+     * Select "Yes" for add another business for adding additional business and click continue
+     */
+    clickYesAddAnotherBusinessForAdditionalBusinessAndContinue() {
+        this.elements.addAdditionalBusinessAddAnotherBusinessYesRadioButton().click();
+        this.elements.continueButton().click();
+    }
+
+    /**
+     * Select "No" for add another business for adding additional business and click continue
+     */
+    clickNoAddAnotherBusinessForAdditionalBusinessAndContinue() {
+        this.elements.addAdditionalBusinessAddAnotherBusinessNoRadioButton().click();
+        this.elements.continueButton().click();
+    }
 
 
     /************* Public Methods ***************/
