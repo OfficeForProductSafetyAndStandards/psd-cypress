@@ -8,8 +8,6 @@ class PSDAddBusinessHelper {
      * @param {*} dataTable 
      */
     addNewBusiness(dataTable) {
-        PSDBasePage.followLink("Search for or add a business");
-    
         const psdBusinessPage = new PSDBusinessPage();
         psdBusinessPage.clickAddNewBusinessButton();
         psdBusinessPage.addBusinessDetails(dataTable);
@@ -17,7 +15,6 @@ class PSDAddBusinessHelper {
         psdBusinessPage.addBusinessContactDetails(dataTable);
         psdBusinessPage.clickUseBusinessDetails();
         psdBusinessPage.addBusinessRole(dataTable);
-        psdBusinessPage.clickNoAddAnotherBusinessAndContinue();
     }
 
 

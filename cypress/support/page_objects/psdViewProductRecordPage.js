@@ -11,7 +11,8 @@ class PSDViewProductRecordPage
         addImageLink : () => cy.contains('a', 'Add an image', { timeout: 10000 }).should('exist'),
         removeImageLink : () => cy.contains('a', 'Remove this image', { timeout: 10000 }).should('exist'),
         deleteImageButton : () => cy.contains('button', 'Delete image', { timeout: 10000 }).should('exist'),
-        showAllSections : () => cy.get('span.govuk-accordion__show-all-text', { timeout: 10000 }).should('exist')
+        showAllSections : () => cy.get('span.govuk-accordion__show-all-text', { timeout: 10000 }).should('exist'),
+        addOrRemoveBusinessButton : () => cy.contains('a', 'Add or Remove business', { timeout: 10000 }).should('exist')
 
     }
 
@@ -134,6 +135,12 @@ class PSDViewProductRecordPage
             });
     }
 
+    /**
+     * Click on 'Add or Remove busness' button
+     */
+    clickAddOrRemoveBusinessButton() {
+        this.elements.addOrRemoveBusinessButton().click();
+    }
 
 }
 
