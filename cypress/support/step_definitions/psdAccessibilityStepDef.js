@@ -7,7 +7,7 @@ const a11yOptions = {
     }
   }
   
-  When("the user validate the page for accessibility violation", function () {
+  When("the user validates the page for accessibility violations", function () {
     cy.injectAxe();
     cy.configureAxe({
       iframes: true,
@@ -16,7 +16,7 @@ const a11yOptions = {
   
   })
   
-  Then("there should be no violation", function () {
+  Then("there should be no violations", function () {
     cy.checkA11y(null, a11yOptions);  
   })
 

@@ -46,3 +46,34 @@ Then("the user should see the following business details:", function (dataTable)
     const psdViewNotificationDetailsPage = new PSDViewNotificationDetailsPage();
     psdViewNotificationDetailsPage.assertBusinessDetailsPresent(dataTable);
 })
+
+When("the user clicks on Add a new business", function () {
+    const psdBusinessPage = new PSDBusinessPage();
+    psdBusinessPage.clickAddNewBusinessButton();
+})
+
+When("the user adds the following business details:", function (dataTable) {
+    const psdBusinessPage = new PSDBusinessPage();
+    psdBusinessPage.addBusinessDetails(dataTable);
+})
+
+When("the user adds following business address details:", function (dataTable) {
+    const psdBusinessPage = new PSDBusinessPage();
+    psdBusinessPage.addBusinessAddress(dataTable);
+})
+
+When("the user adds the following business contact details:", function (dataTable) {
+    const psdBusinessPage = new PSDBusinessPage();
+    psdBusinessPage.addBusinessContactDetails(dataTable);
+})
+
+When("the user clicks on Use business details", function () {
+    const psdBusinessPage = new PSDBusinessPage();
+    psdBusinessPage.clickUseBusinessDetails();
+})
+
+When("the user adds the following business roles:", function (dataTable) {
+    const psdBusinessPage = new PSDBusinessPage();
+    psdBusinessPage.addBusinessRole(dataTable);
+})
+

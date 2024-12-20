@@ -15,7 +15,7 @@ class PSDEditProductRecordHelper {
             createproductpage.enterProductSubcategory(row.ProductSubcategory);
             createproductpage.setProductMarking(row.ProductMarking);
             createproductpage.setWasProductplacedOnTheMarketBefore1January2021(row.MarketBeforeJan2021);
-            createproductpage.enterBarcodeNumber(row.BarcodeNumber);
+            createproductpage.enterProductBarcode(row.BarcodeNumber);
             createproductpage.enterProductIdentifiers(row.OtherProductIdentifiers);
             createproductpage.enterWebpage(row.Webpage);
             createproductpage.selectCountryOfOrigin(row.CounrtyOfOrigin);
