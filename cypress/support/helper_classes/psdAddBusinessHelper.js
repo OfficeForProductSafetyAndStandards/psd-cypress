@@ -1,4 +1,4 @@
-import PSDBusinessPage from "../page_objects/psdBusinessPage";
+import PSDCreateBusinessPage from "../page_objects/psdCreateBusinessPage";
 import PSDBasePage from "../page_objects/psdBasePage";
 
 class PSDAddBusinessHelper {
@@ -8,13 +8,13 @@ class PSDAddBusinessHelper {
      * @param {*} dataTable 
      */
     addNewBusiness(dataTable) {
-        const psdBusinessPage = new PSDBusinessPage();
-        psdBusinessPage.clickAddNewBusinessButton();
-        psdBusinessPage.addBusinessDetails(dataTable);
-        psdBusinessPage.addBusinessAddress(dataTable);
-        psdBusinessPage.addBusinessContactDetails(dataTable);
-        psdBusinessPage.clickUseBusinessDetails();
-        psdBusinessPage.addBusinessRole(dataTable);
+        const psdCreateBusinessPage = new PSDCreateBusinessPage();
+        psdCreateBusinessPage.clickAddNewBusinessButton();
+        psdCreateBusinessPage.addBusinessDetails(dataTable);
+        psdCreateBusinessPage.addBusinessAddress(dataTable);
+        psdCreateBusinessPage.addBusinessContactDetails(dataTable);
+        psdCreateBusinessPage.clickUseBusinessDetails();
+        psdCreateBusinessPage.addBusinessRole(dataTable);
     }
 
 
