@@ -1,11 +1,11 @@
 /// <reference types="cypress" />
 
 import PSDRandomTestDataHelper from "../helper_classes/psdRandomTestDataHelper";
-import PSDBasePage from "../page_objects/psdBasePage";
+import PSDBasePage from "./psdBasePage";
 
-class PSDBusinessPage {
+class PSDCreateBusinessPage {
 
-    /****************** page objects *****************/
+    /****************** Page objects *****************/
 
     elements = {
         addNewBusinessButton: () => cy.contains('a', 'Add a new business', { timeout: 10000 }).should('exist'),
@@ -37,7 +37,7 @@ class PSDBusinessPage {
         addAdditionalBusinessAddAnotherBusinessNoRadioButton: () => cy.get('input#add-another-business-field', { timeout: 10000 }).should('exist')
     }
 
-    /******************** Getter & Setters *******************/
+    /******************** Getters & Setters *******************/
 
     /**
      * Click on the "Add a new business" button
@@ -105,7 +105,7 @@ class PSDBusinessPage {
     }
 
     /**
-     * Select the country fromt he country dropdown
+     * Select the country from the country dropdown
      * @param {*} country 
      */
     selectCountry(country) {
@@ -225,7 +225,7 @@ class PSDBusinessPage {
             }
             if (headers.includes('Postcode') && row.Postcode) {
                 this.elements.postcodeField().clear();
-            this.elements.postcodeField().type(row.Postcode);
+                this.elements.postcodeField().type(row.Postcode);
             }
             if (headers.includes('Country') && row.Country) {
                 this.selectCountry(row.Country);
@@ -281,4 +281,4 @@ class PSDBusinessPage {
 
 }
 
-export default PSDBusinessPage;
+export default PSDCreateBusinessPage;

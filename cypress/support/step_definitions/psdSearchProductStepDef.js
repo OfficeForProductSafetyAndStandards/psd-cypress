@@ -20,7 +20,6 @@ When("the user searches for and views the {string} product", function (productNa
 
     const psdViewProductRecordPage = new PSDViewProductRecordPage();
     psdViewProductRecordPage.clickShowAllSections();
-
 })
 
 When("the user applies the following product search filters:", function (dataTable) {

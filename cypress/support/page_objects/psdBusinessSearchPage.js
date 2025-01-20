@@ -11,7 +11,8 @@ class PSDBusinessSearchPage {
         applyButton : () => cy.get('input[value="Apply"]', { timeout: 10000 }).should('exist'),
         searchResultsText : () => cy.get('div.govuk-grid-column-full > p.govuk-body', { timeout: 10000 }).should('exist'),
         businessSearchResultsTableBody : () => cy.get('tbody.govuk-table__body', { timeout: 10000 }).should('exist'),
-        businessSearchResultsTableRow : () => cy.get('tbody.govuk-table__body > tr', { timeout: 10000 }).should('exist')
+        businessSearchResultsTableRow : () => cy.get('tbody.govuk-table__body > tr', { timeout: 10000 }).should('exist'),
+        businessSearchResultBusinessNameLink : () => cy.get('tbody>tr:nth-of-type(1)>th>a', { timeout: 10000 }).should('exist')
 
     }
 
@@ -119,6 +120,13 @@ class PSDBusinessSearchPage {
                 }
             })
         }        
+    }
+
+    /**
+     * Click on the business name link in the search results table after searching for the business
+     */
+    clickBusinessNameLinkInSearchResultsTable() {
+        this.elements.businessSearchResultBusinessNameLink().click();
     }
 
 
