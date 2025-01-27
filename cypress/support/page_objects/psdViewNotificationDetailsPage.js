@@ -43,6 +43,38 @@ class PSDViewNotificationDetailsPage {
         })
     }
 
+    /**
+     * Click on the 'Change' link for the given label
+     * @param {*} lableName 
+     */
+    clickChangeLinkForGivenField(lableName) {        
+        // Find and click Remove contact link using the contact name
+        cy.contains('dt', lableName)
+            .closest('div')
+            .find('a')
+            .contains('Change')
+            .should('exist')
+            .click();
+    }
+
+    /**
+     * Assert that the given supporting images are displayed correctly on the page
+     * @param {*} dataTable 
+     */
+    assertSupportingImagesDisplayedOnPage(dataTable) {
+        cy.wait(3000);
+        dataTable.hashes().forEach((row) => {
+
+            cy.get(`dd figure a img[src*="${row.SupportingImage}"]`).then(($img) => {                
+                cy.wrap($img).should('be.visible');
+                const width = $img[0].getBoundingClientRect().width;
+                const height = $img[0].getBoundingClientRect().height;
+                expect(width).to.be.greaterThan(0);
+                expect(height).to.be.greaterThan(0);
+            })
+        })
+    }
+
 
     /*************** Private functions *****************/
 
