@@ -8,7 +8,7 @@ class PSDAddSupportingImagesPage {
 
     elements = {
         chooseFileButton: () => cy.get('input#image-upload-file-upload-field', { timeout: 10000 }).should('exist'),
-        uploadImageButton: () => cy.contains('button', 'Upload image', { timeout: 10000 }).should('exist'),
+        uploadImageButton: () => cy.contains('button', /Upload( image)?/, { timeout: 10000 }).should('exist'),
         finishUploadingImagesButton: () => cy.get("button[name='final']", { timeout: 10000 }).should('exist')
     }
 
@@ -49,6 +49,20 @@ class PSDAddSupportingImagesPage {
             }
         })
         this.clickFinishUploadingImages();
+    }
+
+    /**
+     * Upload additional supporting images to an existing notification
+     * @param {*} dataTable 
+     */
+    uploadAdditionalSupportingImages(dataTable) {
+        const data = dataTable.hashes();
+        const headers = dataTable.raw()[0];
+
+        data.forEach(row => {
+            this.uploadSupportingImage(row.SupportingImage);            
+        })
+        PSDBasePage.followLink("Finish uploading images");
     }
 
 }
