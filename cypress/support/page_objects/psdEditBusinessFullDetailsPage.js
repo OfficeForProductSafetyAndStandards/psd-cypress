@@ -38,7 +38,7 @@ class PSDEditBusinessFullDetailsPage {
         if (tradingName.toLowerCase() === 'random') {
             const psdrandomgenerator = new PSDRandomTestDataHelper();
             var name = 'EditedBusinessTradingName_' + psdrandomgenerator.generateRandomNumber(5);
-            cy.wrap(name).as('EditedBusinessTradingName');
+            cy.wrap(name).as('editedBusinessTradingName');
             this.elements.tradingNameField().type(name);
             cy.log('Edited Business Trading name = ' + name);
         } else {
@@ -55,7 +55,7 @@ class PSDEditBusinessFullDetailsPage {
         if (legalName.toLowerCase() === 'random') {
             const psdrandomgenerator = new PSDRandomTestDataHelper();
             var name = 'EditedBusinessLegalName_' + psdrandomgenerator.generateRandomNumber(5);
-            cy.wrap(name).as('EditedBusinessLegalName');
+            cy.wrap(name).as('editedBusinessLegalName');
             this.elements.legalNameField().type(name);
             cy.log('Edited Business Legal name = ' + name);
         } else {

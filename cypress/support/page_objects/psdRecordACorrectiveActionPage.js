@@ -15,16 +15,18 @@ class PSDRecordCorrectiveActionPage {
         recallFromEndUsersYesRadioButton: () => cy.get('input#corrective-action-form-has-online-recall-information-has-online-recall-information-yes-field', { timeout: 10000 }).should('exist'),
         recallFromEndUsersNoRadioButton: () => cy.get('input#corrective-action-form-has-online-recall-information-has-online-recall-information-no-field', { timeout: 10000 }).should('exist'),
         locationOfRecallInformationField: () => cy.get('input#corrective-action-form-online-recall-information-field', { timeout: 10000 }).should('exist'),
-        actionDateDayField: () => cy.get('input#corrective_action_form_date_decided_3i', { timeout: 10000 }).should('exist'),
-        actionDateMonthField: () => cy.get('input#corrective_action_form_date_decided_2i', { timeout: 10000 }).should('exist'),
-        actionDateYearField: () => cy.get('input#corrective_action_form_date_decided_1i', { timeout: 10000 }).should('exist'),
-        correctiveActionLegislationDropdown: () => cy.get('input#corrective-action-form-legislation-field', { timeout: 10000 }).should('exist'),
-        correctiveActionMandatoryYesRadioButton: () => cy.get('input#corrective-action-form-measure-type-mandatory-field', { timeout: 10000 }).should('exist'),
-        correctiveActionMandatoryNoRadioButton: () => cy.get('input#corrective-action-form-measure-type-voluntary-field', { timeout: 10000 }).should('exist'),
-        correctiveActionFurtherDetailsField: () => cy.get('textarea#corrective-action-form-details-field', { timeout: 10000 }).should('exist'),
-        anyFilesRelatedToActionYesRadioButton: () => cy.get('input#corrective-action-form-related-file-true-field', { timeout: 10000 }).should('exist'),
-        anyFilesRelatedToActionNoRadioButton: () => cy.get('input#corrective-action-form-related-file-field', { timeout: 10000 }).should('exist'),
-        chooseFileButton: () => cy.get('input#corrective-action-form-document-field', { timeout: 10000 }).should('exist'),
+        
+        actionDateDayField: () => cy.get('input#corrective_action_form_date_decided_3i, input#corrective_action_date_decided_3i', { timeout: 10000 }).should('exist'),
+        actionDateMonthField: () => cy.get('input#corrective_action_form_date_decided_2i, input#corrective_action_date_decided_2i', { timeout: 10000 }).should('exist'),
+        actionDateYearField: () => cy.get('input#corrective_action_form_date_decided_1i, input#corrective_action_date_decided_1i', { timeout: 10000 }).should('exist'),
+        
+        correctiveActionLegislationDropdown: () => cy.get('input#corrective-action-form-legislation-field, input#corrective-action-legislation-field', { timeout: 10000 }).should('exist'),
+        correctiveActionMandatoryYesRadioButton: () => cy.get('input#corrective-action-form-measure-type-mandatory-field, input#corrective-action-measure-type-mandatory-field', { timeout: 10000 }).should('exist'),
+        correctiveActionMandatoryNoRadioButton: () => cy.get('input#corrective-action-form-measure-type-voluntary-field, input#corrective-action-measure-type-voluntary-field', { timeout: 10000 }).should('exist'),
+        correctiveActionFurtherDetailsField: () => cy.get('textarea#corrective-action-form-details-field, textarea#corrective-action-details-field', { timeout: 10000 }).should('exist'),
+        anyFilesRelatedToActionYesRadioButton: () => cy.get('input#corrective-action-form-related-file-true-field, input#corrective-action-related-file-true-field', { timeout: 10000 }).should('exist'),
+        anyFilesRelatedToActionNoRadioButton: () => cy.get('input#corrective-action-form-related-file-field, input#corrective-action-related-file-field', { timeout: 10000 }).should('exist'),
+        chooseFileButton: () => cy.get('input#corrective-action-form-document-field, input#corrective-action-file-file-field', { timeout: 10000 }).should('exist'),
         addCorrectiveActionButton: () => cy.contains('button', 'Add corrective action', { timeout: 10000 }).should('exist'),
 
         addAnotherActionYesRadioButton: () => cy.get('input#record-a-corrective-action-form-add-another-corrective-action-true-field', { timeout: 10000 }).should('exist'),
@@ -122,7 +124,7 @@ class PSDRecordCorrectiveActionPage {
     selectCorrectiveActionLegislation(legislation) {
         this.elements.correctiveActionLegislationDropdown().click();
         if (legislation.toLowerCase() === 'random') {
-            cy.get('ul#corrective-action-form-legislation-field__listbox > li').then($lis => {
+            cy.get('ul#corrective-action-form-legislation-field__listbox > li, ul#corrective-action-legislation-field__listbox > li').then($lis => {
                 const itemCount = $lis.length;
                 const randomIndex = Math.floor(Math.random() * itemCount);
                 const selectedText = $lis[randomIndex].innerText;
@@ -131,7 +133,7 @@ class PSDRecordCorrectiveActionPage {
                 cy.log('Corrective action legislation = ' + selectedText);
             })
         } else {
-            cy.get('ul#corrective-action-form-legislation-field__listbox > li').contains(legislation).click();
+            cy.get('ul#corrective-action-form-legislation-field__listbox > li, ul#corrective-action-legislation-field__listbox > li').contains(legislation).click();
         }        
     }
 
@@ -311,8 +313,52 @@ class PSDRecordCorrectiveActionPage {
         })
     }
 
+    /**
+     * Add additional corrective action
+     * @param {*} dataTable 
+     */
+    addAdditionalCorrectiveAction(dataTable) {
+        const rows = dataTable.hashes();
 
-
+        rows.forEach((row) => {  
+            Object.entries(row).forEach(([header, value]) => {
+                switch (header) {
+                    case 'ActionBeingTaken':
+                        this.setWhatActionIsBeingTaken(row.ActionBeingTaken);
+                        break;
+                    case 'ActionDate':
+                        this.enterActionDate(row.ActionDate);
+                        break;
+                    case 'Legislation':
+                        this.selectCorrectiveActionLegislation(row.Legislation);
+                        break;
+                    case 'ResponsibleBusiness':
+                        this.setResponsibleBusiness(row.ResponsibleBusiness);
+                        break;
+                    case 'IsActionMandatory':
+                        this.setIsCorrectiveActionMandatory(row.IsActionMandatory);
+                        break;
+                    case 'GeographicRegions':
+                        this.checkGeographicregionsForCorrectiveActionTaken(row.GeographicRegions);
+                        break;
+                    case 'FurtherDetails':
+                        this.enterCorrectiveActionFurtherDetails(row.FurtherDetails);
+                        break;
+                    case 'UploadActionFiles':
+                        if (row.UploadActionFiles.toLowerCase() === 'yes') {
+                            this.clickYesFilesRelatedToAction();
+                        } else {
+                            this.clickNoFilesRelatedToAction();
+                        }
+                        break;
+                    case 'FileName':
+                        this.uploadFileRelatedToAction(row.FileName);
+                        break;
+                }
+            })
+            this.clickAddCorrectiveAction();   
+        })
+    }
 
 }
 

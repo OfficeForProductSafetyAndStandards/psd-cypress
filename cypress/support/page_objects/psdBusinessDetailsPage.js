@@ -54,9 +54,9 @@ class PSDBusinessDetailPage {
     assertEditedBusinessFullDetails(dataTable) {        
         dataTable.hashes().forEach((row) => {
             if (row.Key.toLowerCase() == 'trading name' && row.Value.toLowerCase() == 'random') {
-                this._verifyBusinessFulldetailWithWrappedData('@EditedBusinessTradingName', row.Key);
+                this._verifyBusinessFulldetailWithWrappedData('@editedBusinessTradingName', row.Key);
             } else if (row.Key.toLowerCase() === 'registered or legal name' && row.Value.toLowerCase() === 'random') {
-                this._verifyBusinessFulldetailWithWrappedData('@EditedBusinessLegalName', row.Key);
+                this._verifyBusinessFulldetailWithWrappedData('@editedBusinessLegalName', row.Key);
             } else if (row.Key.toLowerCase() === 'company number' && row.Value.toLowerCase() === 'random') {
                 this._verifyBusinessFulldetailWithWrappedData('@editedCompaniesHouseNumber', row.Key);
             } else {
@@ -181,11 +181,6 @@ class PSDBusinessDetailPage {
             this.elements.productsTabContent().find('dt').contains(rowKey).next('dd').should('contain.text', expData);
         })
     }
-
-
-
-    
-
 
 }
 

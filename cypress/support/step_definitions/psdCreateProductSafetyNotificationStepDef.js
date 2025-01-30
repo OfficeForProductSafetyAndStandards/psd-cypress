@@ -65,11 +65,6 @@ Given("the user adds the following product identification and evidence details:"
     psdEvaluateNotificationRiskLevelPage.addNotificationRiskLevel(dataTable);
 })
 
-Given("the user adds a corrective action with the following details:", function (dataTable) {
-    const psdCreateNotificationHelper = new PSDCreateNotificationHelper();
-    psdCreateNotificationHelper.addACorrectiveActionToANotification(dataTable);
-})
-
 Given("the user selects the {string} notification to make changes", function (notificationTitle) {
     const psdNotificationsPage = new PSDNotificationsPage();
     psdNotificationsPage.clickMakeChangesForGivenNotificationTitle(notificationTitle);
