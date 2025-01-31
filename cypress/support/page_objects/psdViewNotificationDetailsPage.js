@@ -9,7 +9,8 @@ class PSDViewNotificationDetailsPage {
 
     elements = {
         addOrRemoveBusinessButton: () => cy.contains('a', 'Add or Remove business', { timeout: 10000 }).should('exist'),
-        pageContent: () => cy.get('main#main-content', { timeout: 10000 }).should('exist')
+        pageContent: () => cy.get('main#main-content', { timeout: 10000 }).should('exist'),
+        addCorrectiveActionButton: () => cy.contains('a', 'Add corrective action', { timeout: 10000 }).should('exist')
     }
 
     /******************** Getters & Setters *******************/
@@ -22,25 +23,51 @@ class PSDViewNotificationDetailsPage {
     }
 
     /**
+     * Click on Add corrective action button
+     */
+    clickAddCorrectiveActionButton() {
+        this.elements.addCorrectiveActionButton().click();
+    }
+
+    /**
      * Assert that the given business daetails are displayed correctly on notification details page
      * @param {*} dataTable 
      */
-    assertBusinessDetailsPresent(dataTable) {
-
+    assertBusinessDetailsPresent(uniqueText, dataTable) {
         dataTable.hashes().forEach((row) => {
-
             if (row.Key.toLowerCase() === 'trading name' && row.Value.toLowerCase() === 'random') {
                 cy.get('@businessName').then((businessName) => {
                     this.elements.pageContent().should('contain.text', businessName);
                 })             
             } else if (row.Key.toLowerCase() === 'registered or legal name' && row.Value.toLowerCase() === 'random') {
-                this._verifyBusinessDetailsWithWrappedData('@businessLegalName', row.Key);
+                this._verifyNotificationDetailsWithWrappedData('@businessLegalName', row.Key, uniqueText);
             } else if (row.Key.toLowerCase() === 'companies house number' && row.Value.toLowerCase() === 'random') {
-                this._verifyBusinessDetailsWithWrappedData('@companiesHouseNumber', row.Key);
+                this._verifyNotificationDetailsWithWrappedData('@companiesHouseNumber', row.Key, uniqueText);
             } else {
                 this.elements.pageContent().should('contain.text', row.Value);
             }            
         })
+    }
+
+    /**
+     * Assert that the given Corrective action details are displayed correctly
+     * @param {*} dataTable 
+     */
+    assertCorrectiveActionDetailsDisplayedOnPage(uniqueText, dataTable) {
+        dataTable.hashes().forEach((row) => {
+            if (row.Key.toLowerCase() === 'responsible business' && row.Value.toLowerCase() === 'random') {
+                this._verifyNotificationDetailsWithWrappedData('@businessName', row.Key, uniqueText);
+            } else if (row.Key.toLowerCase() === 'legislation' && row.Value.toLowerCase() === 'random') {
+                this._verifyNotificationDetailsWithWrappedData('@correctiveActionLegislation', row.Key, uniqueText);
+            } else if (row.Key.toLowerCase() === 'date added' && row.Value.toLowerCase() === 'today') {
+                const today = new Date();
+                const formattedDate = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                cy.contains(uniqueText).closest('dl').find('dt').contains(row.Key).next('dd').should('contain.text', formattedDate);
+            } else {
+                cy.contains(uniqueText).closest('dl').find('dt').contains(row.Key).next('dd').should('contain.text', row.Value);
+
+            }
+        })        
     }
 
     /**
@@ -75,7 +102,6 @@ class PSDViewNotificationDetailsPage {
         })
     }
 
-
     /*************** Private functions *****************/
 
     /**
@@ -83,11 +109,22 @@ class PSDViewNotificationDetailsPage {
      * @param {*} aliasName 
      * @param {*} rowKey 
      */
-    _verifyBusinessDetailsWithWrappedData(aliasName, rowKey) {
+    _verifyNotificationDetailsWithWrappedData(aliasName, rowKey, uniqueText) {
         cy.get(aliasName).then((expData) => {
-            this.elements.pageContent().find('dt').contains(rowKey).next('dd').should('contain.text', expData);
+            cy.contains(uniqueText).closest('dl').find('dt').contains(rowKey).next('dd').should('contain.text', expData);
         })
     }
+
+    // /**
+    //  * Private function to validate the stored data is present on the page
+    //  * @param {*} aliasName 
+    //  * @param {*} rowKey 
+    //  */
+    // _verifyCorrectiveActionDetailsWithWrappedData(aliasName, rowKey, uniqueText) {
+    //     cy.get(aliasName).then((expData) => {
+    //         cy.contains(uniqueText).closest('dl').find('dt').contains(rowKey).next('dd').should('contain.text', expData);
+    //     })
+    // }
 }
 
 export default PSDViewNotificationDetailsPage;

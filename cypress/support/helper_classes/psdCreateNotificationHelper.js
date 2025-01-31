@@ -59,8 +59,8 @@ class PSDCreateNotificationHelper {
      * @param {*} dataTable 
      */
     addACorrectiveActionToANotification(dataTable) {
-        cy.wait(1000);
-        PSDBasePage.followLink("Record a corrective action");
+        // cy.wait(1000);
+        // PSDBasePage.followLink("Record a corrective action");
 
         const psdActionPage = new PSDRecordCorrectiveActionPage();
         const data = dataTable.hashes();
@@ -75,6 +75,15 @@ class PSDCreateNotificationHelper {
                 psdActionPage.clickContinue();
             }
         })
+    }
+
+    /**
+     * Helper method to add additional corrective action to a submitted notification
+     * @param {*} dataTable 
+     */
+    addAdditionalCorrectiveActionToANotification(dataTable) {        
+        const psdActionPage = new PSDRecordCorrectiveActionPage();
+        psdActionPage.addAdditionalCorrectiveAction(dataTable);    
     }
 
 

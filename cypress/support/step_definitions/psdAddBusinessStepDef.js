@@ -42,9 +42,9 @@ When("the user create and add the following additional businesses to the notific
     })
 })
 
-Then("the user should see the following business details:", function (dataTable) {
+Then("the user should see the following business details in {string} card:", function (uniqueText, dataTable) {
     const psdViewNotificationDetailsPage = new PSDViewNotificationDetailsPage();
-    psdViewNotificationDetailsPage.assertBusinessDetailsPresent(dataTable);
+    psdViewNotificationDetailsPage.assertBusinessDetailsPresent(uniqueText, dataTable);
 })
 
 When("the user clicks on Add a new business", function () {

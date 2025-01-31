@@ -10,7 +10,7 @@ Feature: Add an additional image to an existing notification
 
 
     @SmokeTest
-    Scenario Outline: Verify that a user can add an additional image to an existing notification
+    Scenario Outline: 1. Verify that a user can add an additional image to an existing notification
 
         Given the user creates a product record with the following data:
             | DoesProductHasBarcode | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit | ProductMarking | ManufacturerBrandName | ProductName | UploadProductImage | MarketBeforeJan2021 | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |
