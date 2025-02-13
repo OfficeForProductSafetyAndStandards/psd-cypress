@@ -20,7 +20,10 @@ class PSDAddRiskAssessmentPage {
 
         addAnotherRiskAssessmentYesRadioButton: () => cy.get('input#add-another-risk-assessment-form-add-another-risk-assessment-true-field', { timeout: 10000 }).should('exist'),
         addAnotherRiskAssessmentNoRadioButton: () => cy.get('input#add-another-risk-assessment-form-add-another-risk-assessment-field', { timeout: 10000 }).should('exist'),
-        continueButton: () => cy.contains('button', 'Continue', { timeout: 10000 }).should('exist')
+        continueButton: () => cy.contains('button', 'Continue', { timeout: 10000 }).should('exist'),
+
+        yesSetNotificationRiskLevelRadioButton: () => cy.get('input#update-risk-level-from-risk-assessment-form-update-case-risk-level-to-match-investigation-true-field', { timeout: 10000 }).should('exist'),
+        noKeepCurrentNotificationRiskLevelRadioButton: () => cy.get('input#update-risk-level-from-risk-assessment-form-update-case-risk-level-to-match-investigation-false-field', { timeout: 10000 }).should('exist')
     }
 
     /************ Getters & Setters *************/
@@ -139,6 +142,19 @@ class PSDAddRiskAssessmentPage {
         this.elements.continueButton().click();
     }
 
+    /**
+     * Select the given radio button for Do you want to match this notification risk level to the risk assessment level?
+     * @param {*} option 
+     */
+    matchNotificationRiskLevelToRiskAssessmentLevel(option) {
+        if (option.toLowerCase() === 'yes') {
+            this.elements.yesSetNotificationRiskLevelRadioButton().click();
+        } else {
+            this.elements.noKeepCurrentNotificationRiskLevelRadioButton().click();
+        }
+        PSDBasePage.clickButton('Save');
+    }
+
     /************ Public Methods **************/
 
     /**
@@ -147,9 +163,7 @@ class PSDAddRiskAssessmentPage {
      */
     addLegacyRiskAssessmentDetails(dataTable) {
         const data = dataTable.hashes();
-        const headers = dataTable.raw()[0];
-
-        this.clickAddLegacyRiskAssessment();
+        const headers = dataTable.raw()[0];       
 
         data.forEach(row => {            
             if (headers.includes('DateOfAssessment') && row.DateOfAssessment) {
@@ -174,7 +188,21 @@ class PSDAddRiskAssessmentPage {
                 this.enterFurtherDetails(row.RiskAssessmentDetails);
             }
         })
-        this.clickAddRiskAssessment();
+        //this.clickAddRiskAssessment();
+        // The below code is handle the button in PSD 1.0 and 2.0 Add Risk Assessment and Attach Risk assessment
+
+        cy.get('button').then(($buttons) => {
+            const addButton = $buttons.filter((_, btn) => btn.innerText.includes('Add risk assessment'));
+            const attachButton = $buttons.filter((_, btn) => btn.innerText.includes('Attach risk assessment'));
+
+            if (addButton.length) {
+                cy.wrap(addButton).click();
+            } else if (attachButton.length) {
+                cy.wrap(attachButton).click();
+            } else {
+                throw new Error('Neither "Add risk assessment" nor "Attach risk assessment" button found');
+            }
+        })        
     }
 
 }

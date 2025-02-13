@@ -36,6 +36,16 @@ class PSDBasePage {
             })
     }
 
+    /**
+     * Click on the button using the given button label
+     * @param {*} buttonLable 
+     */
+    static clickButton(buttonLable) {
+        cy.contains('button', buttonLable, { timeout: 10000 })
+            .should('exist')
+            .click();
+    }
+
 }
 
 export default PSDBasePage;
