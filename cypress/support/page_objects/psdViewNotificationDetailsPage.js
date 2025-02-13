@@ -85,6 +85,20 @@ class PSDViewNotificationDetailsPage {
     }
 
     /**
+     * Click on 'Add' link for the given heading text. 
+     * This is PSD 1.0 screen. This method might need to be delete once all PSD 1.0 screens are removed.
+     * @param {*} heading 
+     */
+    clickAddLinkForGivenHeading(heading) {
+        cy.contains('h3', heading)
+            .closest('section')
+            .find('a')
+            .contains('Add')
+            .should('exist')
+            .click();
+    }
+
+    /**
      * Assert that the given supporting images are displayed correctly on the page
      * @param {*} dataTable 
      */

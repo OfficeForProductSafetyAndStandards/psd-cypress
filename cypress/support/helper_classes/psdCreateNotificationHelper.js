@@ -42,6 +42,8 @@ class PSDCreateNotificationHelper {
         const psdAddRiskAssessmentPage = new PSDAddRiskAssessmentPage();
         const data = dataTable.hashes();
 
+        psdAddRiskAssessmentPage.clickAddLegacyRiskAssessment();
+
         data.forEach((row, index) => {
             psdAddRiskAssessmentPage.addLegacyRiskAssessmentDetails(dataTable);
             if (index < data.length - 1) {
@@ -52,6 +54,15 @@ class PSDCreateNotificationHelper {
                 psdAddRiskAssessmentPage.clickContinue();
             }
         })
+    }
+
+    /**
+     * Method to add additional risk assessment to a submitted notification
+     * @param {*} dataTable 
+     */
+    addAdditionalRiskAssessmentToANotification(dataTable) {
+        const psdAddRiskAssessmentPage = new PSDAddRiskAssessmentPage();
+        psdAddRiskAssessmentPage.addLegacyRiskAssessmentDetails(dataTable);
     }
 
     /**

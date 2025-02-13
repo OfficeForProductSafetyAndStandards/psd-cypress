@@ -14,7 +14,7 @@
     "chai": "^5.0.0",
     "chai-uuid": "^1.0.6",
     "cypress": "^14.0.0",
-    "cypress-axe": "^1.5.0",
+    "cypress-axe": "^1.6.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-file-upload": "^5.0.8",
     "mochawesome": "^7.1.3",
