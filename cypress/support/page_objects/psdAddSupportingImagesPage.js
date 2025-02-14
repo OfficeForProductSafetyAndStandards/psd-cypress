@@ -62,7 +62,7 @@ class PSDAddSupportingImagesPage {
         data.forEach(row => {
             this.uploadSupportingImage(row.SupportingImage);            
         })
-        PSDBasePage.followLink("Finish uploading images");
+        this.clickFinishUploadingImages();
     }
 
 }

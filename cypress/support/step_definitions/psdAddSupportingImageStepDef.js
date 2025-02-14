@@ -11,8 +11,6 @@ When("the user adds the following supporting images to the notification:", funct
     const psdViewNotificationDetailsPage = new PSDViewNotificationDetailsPage();
     psdViewNotificationDetailsPage.clickChangeLinkForGivenField("Supporting images");
 
-    PSDBasePage.followLink("Add a notification image");
-
     const psdAddSupportingImagesPage = new PSDAddSupportingImagesPage();
     psdAddSupportingImagesPage.uploadAdditionalSupportingImages(dataTable);
 })
@@ -21,3 +19,9 @@ Then("the user should see the following supporting images displayed:", function 
     const psdViewNotificationDetailsPage = new PSDViewNotificationDetailsPage();
     psdViewNotificationDetailsPage.assertSupportingImagesDisplayedOnPage(dataTable);
 })
+
+Then("the user should see the following supporting images links:", function (dataTable) {
+    const psdViewNotificationDetailsPage = new PSDViewNotificationDetailsPage();
+    psdViewNotificationDetailsPage.assertSupportingImagesLinksOnPage(dataTable);
+})
+

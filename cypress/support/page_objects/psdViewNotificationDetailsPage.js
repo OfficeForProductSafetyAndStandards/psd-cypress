@@ -116,6 +116,27 @@ class PSDViewNotificationDetailsPage {
         })
     }
 
+    /**
+     * Assert that the given supporting images are displayed as links in supporting images section
+     * @param {*} dataTable 
+     */
+    assertSupportingImagesLinksOnPage(dataTable) {
+        dataTable.hashes().forEach((row) => {
+            cy.contains('dt', 'Supporting images')
+                .next('dd')
+                .within(() => {
+                    // Find all links in the dd element
+                    cy.get('a').then($links => {
+                        const linkTexts = Array.from($links, link => link.textContent);
+
+                        dataTable.hashes().forEach((row) => {
+                            expect(linkTexts).to.include(row.SupportingImage);
+                        })
+                    })
+                })
+        })
+    }
+
     /*************** Private functions *****************/
 
     /**
