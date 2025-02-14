@@ -40,7 +40,7 @@ Feature: Add an additional image to an existing notification
             | <SupportingImage2> |
             | <SupportingImage3> |
 
-        Then the user should see the following supporting images displayed:
+        Then the user should see the following supporting images links:
             | SupportingImage    |
             | <SupportingImage1> |
             | <SupportingImage2> |
