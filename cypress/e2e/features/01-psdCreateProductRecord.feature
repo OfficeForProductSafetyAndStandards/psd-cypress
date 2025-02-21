@@ -1,3 +1,4 @@
+@SmokeTest
 Feature: Create PSD product record
     As a logged in user of the PSD service
     I want to be able to create a product record
@@ -86,11 +87,11 @@ Feature: Create PSD product record
             | Product record created |
             | PSD reference number   |
 
-        Given the user navigates to "products/all-products" url in PSD
+        Given the user navigates to "/all-products" url in PSD
         When the user searches for the "Random" product
 
         And the PSD reference number should match the pattern "psd-\d+"
-        And the user clicks on the link "View the product record"
+        And the user searches for and views the "Random" product
         And the user should see the following product data on view product page:
             | Key                       | Value               |
             | Brand name                | Random              |

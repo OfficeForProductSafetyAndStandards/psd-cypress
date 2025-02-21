@@ -70,8 +70,9 @@ Feature: Edit PSD product record
             | Yes                   | Import rejected at border | 10/2/2024  | Random      | Random              | Yes               | Local,Great Britain | QA Auto test   | Yes               | docx.docx |
         And the user follows the "Check the notification details and submit" link
         And the user submits the notification
-        And the user navigates to "products/all-products" url in PSD
-        And the user searches for the "Random" product
+        And the user navigates to "Products" page from the header menu
+        And the user follows the "All products - Search" link
+        And the user searches for and views the "Random" product
 
         When the user edits the product record with the following data:
             | ProductCategory       | ProductSubcategory       | ProductMarking       | MarketBeforeJan2021       | BarcodeNumber | OtherProductIdentifiers       | Webpage       | CounrtyOfOrigin       | DescriptionOfProduct       |
@@ -83,22 +84,22 @@ Feature: Edit PSD product record
             | This is a Product Safety Database (PSD) product record. |
             | This product record has been added to 1 notification.   |
         And the user should see the following product data on view product page:
-            | Key                       | Value                         |
-            | Brand name                | Random                        |
-            | Product name              | Random                        |
-            | Category                  | <EditProductCategory>         |
-            | Subcategory               | <EditProductSubcategory>      |
-            | Barcode                   | <EditBarcode>                 |
-            | Description               | <EditDescriptionOfProduct>    |
-            | Webpage                   | <EditWebpage>                 |
-            | Market date               | <EditMarketBeforeJan2021>     |
-            | Country of origin         | <EditCounrtyOfOrigin>         |
-            | Counterfeit               | No                            |
-            | Product marking           | <EditProductMarking>          |
-            | Other product identifiers | <EditOtherProductIdentifiers> |
+            | Key                       | Value                                               |
+            | Brand name                | Random                                              |
+            | Product name              | Random                                              |
+            | Category                  | <EditProductCategory>                               |
+            | Subcategory               | <ExpectedEditProductSubcategory>                    |
+            | Barcode                   | <EditBarcode>                                       |
+            | Description               | <ExpectedEditDescriptionOfProduct>                  |
+            | Webpage                   | <ExpectedEditWebpage>                               |
+            | Market date               | <EditMarketBeforeJan2021>                           |
+            | Country of origin         | <EditCounrtyOfOrigin>                               |
+            | Counterfeit               | No - This product record is about a genuine product |
+            | Product marking           | <EditProductMarking>                                |
+            | Other product identifiers | <ExpectedEditOtherProductIdentifiers>               |
 
         Examples:
-            | EditProductCategory | EditProductSubcategory                              | EditProductMarking | EditMarketBeforeJan2021 | EditBarcode                         | EditOtherProductIdentifiers                   | EditWebpage                                  | EditCounrtyOfOrigin | EditDescriptionOfProduct                              |
-            | Furniture           | Edited Furniture Sub cat                            | Unknown            | Unable to ascertain     | 13246587                            | Edited identifiers                            | Editedexample.com                            | United Kingdom      | Edited product Description                            |
-            | Furniture           | <script>alert('Edited Furniture sub cat');</script> | Unknown            | Unable to ascertain     | <script>alert('13246587');</script> | <script>alert('Edited identifiers');</script> | <script>alert('Editedexample.com');</script> | United Kingdom      | <script>alert('Edited product Description');</script> |
+            | EditProductCategory | EditProductSubcategory                              | EditProductMarking | EditMarketBeforeJan2021 | EditBarcode | EditOtherProductIdentifiers                   | EditWebpage                                  | EditCounrtyOfOrigin | EditDescriptionOfProduct                              | ExpectedEditProductSubcategory     | ExpectedEditOtherProductIdentifiers | ExpectedEditWebpage         | ExpectedEditDescriptionOfProduct     |
+            | Furniture           | Edited Furniture Sub cat                            | Unknown            | Unable to ascertain     | 13246587    | Edited identifiers                            | Editedexample.com                            | United Kingdom      | Edited product Description                            | Edited Furniture Sub cat           | Edited identifiers                  | Editedexample.com           | Edited product Description           |
+            | Furniture           | <script>alert('Edited Furniture sub cat');</script> | Unknown            | Unable to ascertain     | 13246587    | <script>alert('Edited identifiers');</script> | <script>alert('Editedexample.com');</script> | United Kingdom      | <script>alert('Edited product Description');</script> | alert('Edited Furniture sub cat'); | alert('Edited identifiers');        | alert('Editedexample.com'); | alert('Edited product Description'); |
 

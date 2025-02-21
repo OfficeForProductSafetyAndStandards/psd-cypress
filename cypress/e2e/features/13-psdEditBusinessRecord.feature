@@ -16,7 +16,7 @@ Feature: Edit PSD business record
             | Random      |
         And the user adds the following notification and product safety details:
             | NotificationTitle | NotificationSummary            | NotificationReason | ProductPrimaryHarm | ProductHarmInfo | ProductIncompleteMarkingsDescription | OverseasRegulatorCountry | ReferenceNumber |
-            | Random            | Auto Test notification summary | Product is unsafe  | Random             | Harm to health  | Product non-compliant                | Random                   | No              |
+            | Random            | Auto Test notification summary | Product is unsafe  | Burns              | Harm to health  | Product non-compliant                | Random                   | No              |
         And the user adds a new business with the following data:
             | TradingName | LegalName | CompanyNumber | AddressLine1 | AddressLine2 | Town    | County    | Postcode | Country        | ContactFullName      | ContactJobTitle | ContactEmail      | ContactPhone | BusinessRole |
             | Random      | Random    | Random        | Line1        | Line2        | QA Town | QA County | AA1 1AA  | United Kingdom | QA Automation tester | PSD QA          | PSDQA@example.com | 0123456789   | Retailer     |

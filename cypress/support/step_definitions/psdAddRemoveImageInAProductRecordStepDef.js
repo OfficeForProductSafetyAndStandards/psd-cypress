@@ -8,7 +8,7 @@ import PSDViewProductRecordPage from "../page_objects/psdViewProductRecordPage";
 
 When("the user adds {string} image to the product", function (image) {
     const psdViewProductRecordPage = new PSDViewProductRecordPage();
-    psdViewProductRecordPage.clickShowImagesLink();
+    psdViewProductRecordPage.clickShowAllSections();
     psdViewProductRecordPage.clickAddImageLink();
 
     const psdAddProductImagePage = new PSDAddProductImagePage();
@@ -18,7 +18,7 @@ When("the user adds {string} image to the product", function (image) {
 
 Then("the user should see the following images added to the product:", function (dataTable) {
     const psdViewProductRecordPage = new PSDViewProductRecordPage();
-    psdViewProductRecordPage.clickShowImagesLink();
+    psdViewProductRecordPage.clickShowAllSections();
     psdViewProductRecordPage.verifyTheProductImages(dataTable);
 })
 

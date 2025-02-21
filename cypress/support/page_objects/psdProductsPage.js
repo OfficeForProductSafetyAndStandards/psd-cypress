@@ -17,11 +17,7 @@ class PSDProductsPage {
         applyButton : () => cy.get('input[value="Apply"]', { timeout: 10000 }).should('exist'),
         productSearchResultsTable : () => cy.get('div[aria-label="Products"]>table', { timeout: 10000 }).should('exist'),
         productSearchResultProductNameLink : () => cy.get('th#item-0 a', { timeout: 10000 }).should('exist')
-
-
-
-
-
+        
         // productSearchResultsTableBody : () => cy.get('tbody.govuk-table__body', { timeout: 10000 }).should('exist')
 
     }
