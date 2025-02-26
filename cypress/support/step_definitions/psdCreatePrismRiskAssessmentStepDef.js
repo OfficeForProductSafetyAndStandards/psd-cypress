@@ -5,6 +5,7 @@ import PSDPrismRiskAssessmentPage from "../page_objects/psdPrismRiskAssessmentsP
 import PSDProductsPage from "../page_objects/psdProductsPage";
 import PSDPrismRiskAddEvaluationDetailsPage from "./psdPrismRiskAddEvaluationDetailsPage";
 import PSDBasePage from "../page_objects/psdBasePage";
+import PSDPrismRiskUncertainityAndSensitivityAnalysisPage from "./psdPrismRiskUncertaintyAndSensitivityAnalysisPage";
 
 /********************** Step definitions **********************/
 
@@ -57,5 +58,11 @@ When("the user adds the following product evaluation details:", function (dataTa
 
 When("the user adds the following risk assessment outcome details:", function (dataTable) {
     PSDBasePage.followLink('Add level of uncertainty and sensitivity analysis');
+    const psdUncertaintyAndSensitivityPage = new PSDPrismRiskUncertainityAndSensitivityAnalysisPage();
+    psdUncertaintyAndSensitivityPage.addLevelOfUncertaintyAndSensitivityAnalysis(dataTable);
+})
+
+When("the user adds the following nature of the risk details:", function (dataTable) {
+    PSDBasePage.followLink('Consider the nature of the risk');
 
 })

@@ -23,8 +23,12 @@ Feature: Create a PRISM risk assessment
             | QA AutoTest Assessment | QA AutoTest Assessor | QA Auto Test Assessment Org |
 
         When the user adds the following risk assessment outcome details:
+            | LevelOfUncertainty   | HasSensitivityAnalysisUndertaken   | SensitivityAnalysisInfo   |
+            | <LevelOfUncertainty> | <HasSensitivityAnalysisUndertaken> | <SensitivityAnalysisInfo> |
+
+        When the user adds the following nature of the risk details:
             | 
 
         Examples:
-            | ProductName |
-            | Random      |
+            | ProductName | LevelOfUncertainty | HasSensitivityAnalysisUndertaken | SensitivityAnalysisInfo                       |
+            | Random      | High               | Yes                              | QA Auto Test Sensitivity Analysis Information |
