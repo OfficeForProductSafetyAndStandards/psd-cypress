@@ -27,7 +27,7 @@ Feature: Create a PRISM risk assessment
             | <LevelOfUncertainty> | <HasSensitivityAnalysisUndertaken> | <SensitivityAnalysisInfo> |
 
         When the user adds the following nature of the risk details:
-            | 
+             
 
         Examples:
             | ProductName | LevelOfUncertainty | HasSensitivityAnalysisUndertaken | SensitivityAnalysisInfo                       |
