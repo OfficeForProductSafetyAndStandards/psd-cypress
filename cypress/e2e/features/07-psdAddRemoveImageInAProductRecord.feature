@@ -8,9 +8,9 @@ Feature: Add, Edit and Remove image in a PSD product record
 
         Given the user logs into PSD system
 
-
+    # NOTE: fix the show hide button issue
     @SmokeTest
-    Scenario Outline: Verify that an image can be added to a product that is added to a notification
+    Scenario Outline: 1. Verify that an image can be added to a product that is added to a notification
 
         Given the user creates a product record with the following data:
             | DoesProductHasBarcode | BarcodeNumber | ProductCategory | ProductSubcategory | IsProductCounterfeit | ProductMarking | ManufacturerBrandName | ProductName | UploadProductImage | MarketBeforeJan2021 | OtherProductIdentifiers | Webpage  | CounrtyOfOrigin | DescriptionOfProduct |

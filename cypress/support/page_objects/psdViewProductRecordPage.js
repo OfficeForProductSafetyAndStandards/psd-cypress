@@ -124,15 +124,25 @@ class PSDViewProductRecordPage
      * Click on Show All sections
      */
     clickShowAllSections() {
-        this.elements.showAllSections()
-            .then(($button) => {
-                if ($button.is(':visible') && $button.text().trim() === 'Show all sections') {
-                    cy.wrap($button).click(); // Click only if the button is visible
-                } else {
-                // No action if the button is not visible
-                    cy.log('Show all sections link is not visible, no action taken');
-                }
-            });
+        const showAllSectionsText = 'Show all sections';
+
+        this.elements.pageContent().then($content => {
+            if ($content.find(`:contains(${showAllSectionsText})`).length) {
+                this.elements.showAllSections().click();
+            }
+        })
+
+
+
+        // this.elements.showAllSections()
+        //     .then(($button) => {
+        //         if ($button.is(':visible') && $button.text().trim() === 'Show all sections') {
+        //             cy.wrap($button).click(); // Click only if the button is visible
+        //         } else {
+        //         // No action if the button is not visible
+        //             cy.log('Show all sections link is not visible, no action taken');
+        //         }
+        //     });
     }
 
     /**
