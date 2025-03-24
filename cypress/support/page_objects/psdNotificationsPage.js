@@ -62,11 +62,11 @@ class PSDNotificationsPage
             cy.contains('span', row.FilterType, { timeout: 10000 }).should('exist').click();
             
             if (row.FilterType.toLowerCase() === 'notification owner' & row.FilterLabel.toLowerCase().includes('others')) {
-                const filterArray = FilterLabel.split(',').map(item => item.trim());
+                const filterArray = row.FilterLabel.split(',').map(item => item.trim());
                 PSDBasePage.checkCheckboxForTheLabelText(filterArray[0]);
                 this.selectNotificationOwnerOtherPersonOrTeamName(filterArray[1]);
             } else if (row.FilterType.toLowerCase() === 'teams added to the notification' & row.FilterLabel.toLowerCase().includes('others')) {
-                const filterArray = FilterLabel.split(',').map(item => item.trim());
+                const filterArray = row.FilterLabel.split(',').map(item => item.trim());
                 PSDBasePage.checkCheckboxForTheLabelText(filterArray[0]);
                 this.selectTeamsAddedToTheNotificationOthersTeamName(filterArray[1]);
             } else {

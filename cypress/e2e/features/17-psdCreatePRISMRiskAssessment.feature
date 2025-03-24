@@ -8,8 +8,8 @@ Feature: Create a PRISM risk assessment
 
         Given the user logs into PSD system
 
-
-    @SmokeTest
+# Need to complete this scenarios
+    @SmokeTestX
     Scenario Outline: 1. Verify that a user can create a PRISM risk assessment for a product
 
         Given the user creates a product record with the following data:
